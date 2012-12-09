@@ -1,0 +1,432 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		8A205172150F8D2000E80270 /* Marker.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8A205171150F8D2000E80270 /* Marker.cpp */; };
+		8A20518D1510A35F00E80270 /* EAGLView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A20518C1510A35F00E80270 /* EAGLView.m */; };
+		8A2051921510BB7B00E80270 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A2051901510BB7B00E80270 /* GLKit.framework */; };
+		8A2051931510BB7B00E80270 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A2051911510BB7B00E80270 /* OpenGLES.framework */; };
+		8A2051951510BB8C00E80270 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A2051941510BB8C00E80270 /* QuartzCore.framework */; };
+		8A2051981510BCB900E80270 /* SimpleVisualizationController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8A2051971510BCB900E80270 /* SimpleVisualizationController.mm */; };
+		8A279D1F150E3F88005F4854 /* MarkerDetector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8A279D1E150E3F88005F4854 /* MarkerDetector.cpp */; };
+		8A28CB2615249CEA0049925A /* TinyLA.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8A28CB2515249CEA0049925A /* TinyLA.cpp */; };
+		8ADAC4391504BC61008B5F2A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8ADAC4381504BC61008B5F2A /* UIKit.framework */; };
+		8ADAC43B1504BC61008B5F2A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8ADAC43A1504BC61008B5F2A /* Foundation.framework */; };
+		8ADAC43D1504BC61008B5F2A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8ADAC43C1504BC61008B5F2A /* CoreGraphics.framework */; };
+		8ADAC4431504BC61008B5F2A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8ADAC4411504BC61008B5F2A /* InfoPlist.strings */; };
+		8ADAC4451504BC61008B5F2A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ADAC4441504BC61008B5F2A /* main.m */; };
+		8ADAC4491504BC61008B5F2A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ADAC4481504BC61008B5F2A /* AppDelegate.m */; };
+		8ADAC44C1504BC61008B5F2A /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8ADAC44A1504BC61008B5F2A /* MainStoryboard_iPhone.storyboard */; };
+		8ADAC44F1504BC61008B5F2A /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8ADAC44D1504BC61008B5F2A /* MainStoryboard_iPad.storyboard */; };
+		8ADAC4521504BC61008B5F2A /* ViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8ADAC4511504BC61008B5F2A /* ViewController.mm */; };
+		8ADAC46D1504CA1A008B5F2A /* VideoSource.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8ADAC46C1504CA1A008B5F2A /* VideoSource.mm */; };
+		8ADAC46F150508E8008B5F2A /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8ADAC46E150508E8008B5F2A /* CoreVideo.framework */; };
+		8ADAC471150508EF008B5F2A /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8ADAC470150508EF008B5F2A /* AVFoundation.framework */; };
+		8ADAC473150508F7008B5F2A /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8ADAC472150508F7008B5F2A /* CoreMedia.framework */; };
+		8AFB8A40151895C600A42DEE /* CameraCalibration.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8AFB8A3F151895C600A42DEE /* CameraCalibration.cpp */; };
+		8AFB8A421518CA1D00A42DEE /* GeometryTypes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8AFB8A411518CA1D00A42DEE /* GeometryTypes.cpp */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		8A20516E150E9B4D00E80270 /* BGRAVideoFrame.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BGRAVideoFrame.h; sourceTree = "<group>"; };
+		8A205170150F8D1800E80270 /* Marker.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Marker.hpp; sourceTree = "<group>"; };
+		8A205171150F8D2000E80270 /* Marker.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Marker.cpp; sourceTree = "<group>"; };
+		8A20518B1510A35F00E80270 /* EAGLView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EAGLView.h; sourceTree = "<group>"; };
+		8A20518C1510A35F00E80270 /* EAGLView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EAGLView.m; sourceTree = "<group>"; };
+		8A20518E1510A58F00E80270 /* VisualizationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VisualizationController.h; sourceTree = "<group>"; };
+		8A20518F1510A6E300E80270 /* GeometryTypes.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = GeometryTypes.hpp; sourceTree = "<group>"; };
+		8A2051901510BB7B00E80270 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
+		8A2051911510BB7B00E80270 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		8A2051941510BB8C00E80270 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		8A2051961510BCB900E80270 /* SimpleVisualizationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleVisualizationController.h; sourceTree = "<group>"; };
+		8A2051971510BCB900E80270 /* SimpleVisualizationController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SimpleVisualizationController.mm; sourceTree = "<group>"; };
+		8A2051A015112D3B00E80270 /* MarkerDetectionFacade.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MarkerDetectionFacade.hpp; sourceTree = "<group>"; };
+		8A279D1C150E3F7E005F4854 /* MarkerDetector.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = MarkerDetector.hpp; sourceTree = "<group>"; };
+		8A279D1E150E3F88005F4854 /* MarkerDetector.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MarkerDetector.cpp; sourceTree = "<group>"; };
+		8A28CB2315249CDA0049925A /* TinyLA.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = TinyLA.hpp; sourceTree = "<group>"; };
+		8A28CB2515249CEA0049925A /* TinyLA.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TinyLA.cpp; sourceTree = "<group>"; };
+		8ADAC4341504BC61008B5F2A /* Example_MarkerBasedAR.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example_MarkerBasedAR.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8ADAC4381504BC61008B5F2A /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		8ADAC43A1504BC61008B5F2A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		8ADAC43C1504BC61008B5F2A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		8ADAC4401504BC61008B5F2A /* Example_MarkerBasedAR-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Example_MarkerBasedAR-Info.plist"; sourceTree = "<group>"; };
+		8ADAC4421504BC61008B5F2A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		8ADAC4441504BC61008B5F2A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		8ADAC4461504BC61008B5F2A /* Example_MarkerBasedAR-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Example_MarkerBasedAR-Prefix.pch"; sourceTree = "<group>"; };
+		8ADAC4471504BC61008B5F2A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		8ADAC4481504BC61008B5F2A /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		8ADAC44B1504BC61008B5F2A /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
+		8ADAC44E1504BC61008B5F2A /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
+		8ADAC4501504BC61008B5F2A /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		8ADAC4511504BC61008B5F2A /* ViewController.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = ViewController.mm; sourceTree = "<group>"; };
+		8ADAC46B1504CA1A008B5F2A /* VideoSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoSource.h; sourceTree = "<group>"; };
+		8ADAC46C1504CA1A008B5F2A /* VideoSource.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = VideoSource.mm; sourceTree = "<group>"; };
+		8ADAC46E150508E8008B5F2A /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
+		8ADAC470150508EF008B5F2A /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		8ADAC472150508F7008B5F2A /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		8AFB8A3D1518914A00A42DEE /* CameraCalibration.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = CameraCalibration.hpp; sourceTree = "<group>"; };
+		8AFB8A3F151895C600A42DEE /* CameraCalibration.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CameraCalibration.cpp; sourceTree = "<group>"; };
+		8AFB8A411518CA1D00A42DEE /* GeometryTypes.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GeometryTypes.cpp; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		8ADAC4311504BC61008B5F2A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8A2051931510BB7B00E80270 /* OpenGLES.framework in Frameworks */,
+				8A2051951510BB8C00E80270 /* QuartzCore.framework in Frameworks */,
+				8A2051921510BB7B00E80270 /* GLKit.framework in Frameworks */,
+				8ADAC473150508F7008B5F2A /* CoreMedia.framework in Frameworks */,
+				8ADAC471150508EF008B5F2A /* AVFoundation.framework in Frameworks */,
+				8ADAC46F150508E8008B5F2A /* CoreVideo.framework in Frameworks */,
+				8ADAC4391504BC61008B5F2A /* UIKit.framework in Frameworks */,
+				8ADAC43B1504BC61008B5F2A /* Foundation.framework in Frameworks */,
+				8ADAC43D1504BC61008B5F2A /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		8A20517D150FAE6600E80270 /* Interfaces */ = {
+			isa = PBXGroup;
+			children = (
+				8A2051A015112D3B00E80270 /* MarkerDetectionFacade.hpp */,
+				8A20518E1510A58F00E80270 /* VisualizationController.h */,
+			);
+			name = Interfaces;
+			sourceTree = "<group>";
+		};
+		8A20517F1510A30800E80270 /* Rendering */ = {
+			isa = PBXGroup;
+			children = (
+				8A20518B1510A35F00E80270 /* EAGLView.h */,
+				8A20518C1510A35F00E80270 /* EAGLView.m */,
+				8A2051961510BCB900E80270 /* SimpleVisualizationController.h */,
+				8A2051971510BCB900E80270 /* SimpleVisualizationController.mm */,
+			);
+			name = Rendering;
+			sourceTree = "<group>";
+		};
+		8A279D20150E3F8C005F4854 /* MarkerDetector */ = {
+			isa = PBXGroup;
+			children = (
+				8A279D1C150E3F7E005F4854 /* MarkerDetector.hpp */,
+				8A279D1E150E3F88005F4854 /* MarkerDetector.cpp */,
+				8A205170150F8D1800E80270 /* Marker.hpp */,
+				8A205171150F8D2000E80270 /* Marker.cpp */,
+				8A28CB2315249CDA0049925A /* TinyLA.hpp */,
+				8A28CB2515249CEA0049925A /* TinyLA.cpp */,
+			);
+			name = MarkerDetector;
+			sourceTree = "<group>";
+		};
+		8ADAC4291504BC61008B5F2A = {
+			isa = PBXGroup;
+			children = (
+				8ADAC43E1504BC61008B5F2A /* Example_MarkerBasedAR */,
+				8ADAC4371504BC61008B5F2A /* Frameworks */,
+				8ADAC4351504BC61008B5F2A /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		8ADAC4351504BC61008B5F2A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8ADAC4341504BC61008B5F2A /* Example_MarkerBasedAR.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		8ADAC4371504BC61008B5F2A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8A2051941510BB8C00E80270 /* QuartzCore.framework */,
+				8A2051901510BB7B00E80270 /* GLKit.framework */,
+				8A2051911510BB7B00E80270 /* OpenGLES.framework */,
+				8ADAC472150508F7008B5F2A /* CoreMedia.framework */,
+				8ADAC470150508EF008B5F2A /* AVFoundation.framework */,
+				8ADAC46E150508E8008B5F2A /* CoreVideo.framework */,
+				8ADAC4381504BC61008B5F2A /* UIKit.framework */,
+				8ADAC43A1504BC61008B5F2A /* Foundation.framework */,
+				8ADAC43C1504BC61008B5F2A /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		8ADAC43E1504BC61008B5F2A /* Example_MarkerBasedAR */ = {
+			isa = PBXGroup;
+			children = (
+				8A20517F1510A30800E80270 /* Rendering */,
+				8A20517D150FAE6600E80270 /* Interfaces */,
+				8A279D20150E3F8C005F4854 /* MarkerDetector */,
+				8ADAC46A1504C9DE008B5F2A /* VideoSource */,
+				8ADAC4471504BC61008B5F2A /* AppDelegate.h */,
+				8ADAC4481504BC61008B5F2A /* AppDelegate.m */,
+				8ADAC44A1504BC61008B5F2A /* MainStoryboard_iPhone.storyboard */,
+				8ADAC44D1504BC61008B5F2A /* MainStoryboard_iPad.storyboard */,
+				8ADAC4501504BC61008B5F2A /* ViewController.h */,
+				8ADAC4511504BC61008B5F2A /* ViewController.mm */,
+				8ADAC43F1504BC61008B5F2A /* Supporting Files */,
+				8A20518F1510A6E300E80270 /* GeometryTypes.hpp */,
+				8AFB8A411518CA1D00A42DEE /* GeometryTypes.cpp */,
+			);
+			path = Example_MarkerBasedAR;
+			sourceTree = "<group>";
+		};
+		8ADAC43F1504BC61008B5F2A /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				8ADAC4401504BC61008B5F2A /* Example_MarkerBasedAR-Info.plist */,
+				8ADAC4411504BC61008B5F2A /* InfoPlist.strings */,
+				8ADAC4441504BC61008B5F2A /* main.m */,
+				8ADAC4461504BC61008B5F2A /* Example_MarkerBasedAR-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		8ADAC46A1504C9DE008B5F2A /* VideoSource */ = {
+			isa = PBXGroup;
+			children = (
+				8ADAC46B1504CA1A008B5F2A /* VideoSource.h */,
+				8ADAC46C1504CA1A008B5F2A /* VideoSource.mm */,
+				8A20516E150E9B4D00E80270 /* BGRAVideoFrame.h */,
+				8AFB8A3D1518914A00A42DEE /* CameraCalibration.hpp */,
+				8AFB8A3F151895C600A42DEE /* CameraCalibration.cpp */,
+			);
+			name = VideoSource;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		8ADAC4331504BC61008B5F2A /* Example_MarkerBasedAR */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8ADAC4551504BC61008B5F2A /* Build configuration list for PBXNativeTarget "Example_MarkerBasedAR" */;
+			buildPhases = (
+				8ADAC4301504BC61008B5F2A /* Sources */,
+				8ADAC4311504BC61008B5F2A /* Frameworks */,
+				8ADAC4321504BC61008B5F2A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Example_MarkerBasedAR;
+			productName = Example_MarkerBasedAR;
+			productReference = 8ADAC4341504BC61008B5F2A /* Example_MarkerBasedAR.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		8ADAC42B1504BC61008B5F2A /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0430;
+			};
+			buildConfigurationList = 8ADAC42E1504BC61008B5F2A /* Build configuration list for PBXProject "Example_MarkerBasedAR" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 8ADAC4291504BC61008B5F2A;
+			productRefGroup = 8ADAC4351504BC61008B5F2A /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				8ADAC4331504BC61008B5F2A /* Example_MarkerBasedAR */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		8ADAC4321504BC61008B5F2A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8ADAC4431504BC61008B5F2A /* InfoPlist.strings in Resources */,
+				8ADAC44C1504BC61008B5F2A /* MainStoryboard_iPhone.storyboard in Resources */,
+				8ADAC44F1504BC61008B5F2A /* MainStoryboard_iPad.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8ADAC4301504BC61008B5F2A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8ADAC4451504BC61008B5F2A /* main.m in Sources */,
+				8ADAC4491504BC61008B5F2A /* AppDelegate.m in Sources */,
+				8ADAC4521504BC61008B5F2A /* ViewController.mm in Sources */,
+				8ADAC46D1504CA1A008B5F2A /* VideoSource.mm in Sources */,
+				8A279D1F150E3F88005F4854 /* MarkerDetector.cpp in Sources */,
+				8A205172150F8D2000E80270 /* Marker.cpp in Sources */,
+				8A20518D1510A35F00E80270 /* EAGLView.m in Sources */,
+				8A2051981510BCB900E80270 /* SimpleVisualizationController.mm in Sources */,
+				8AFB8A40151895C600A42DEE /* CameraCalibration.cpp in Sources */,
+				8AFB8A421518CA1D00A42DEE /* GeometryTypes.cpp in Sources */,
+				8A28CB2615249CEA0049925A /* TinyLA.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		8ADAC4411504BC61008B5F2A /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8ADAC4421504BC61008B5F2A /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		8ADAC44A1504BC61008B5F2A /* MainStoryboard_iPhone.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8ADAC44B1504BC61008B5F2A /* en */,
+			);
+			name = MainStoryboard_iPhone.storyboard;
+			sourceTree = "<group>";
+		};
+		8ADAC44D1504BC61008B5F2A /* MainStoryboard_iPad.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8ADAC44E1504BC61008B5F2A /* en */,
+			);
+			name = MainStoryboard_iPad.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		8ADAC4531504BC61008B5F2A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/opencv/include";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				LIBRARY_SEARCH_PATHS = "$(SRCROOT)/opencv/lib/debug";
+				OTHER_LDFLAGS = (
+					"-lopencv_calib3d",
+					"-lzlib",
+					"-lopencv_contrib",
+					"-lopencv_legacy",
+					"-lopencv_features2d",
+					"-lopencv_imgproc",
+					"-lopencv_video",
+					"-lopencv_core",
+				);
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/opencv/include";
+			};
+			name = Debug;
+		};
+		8ADAC4541504BC61008B5F2A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/opencv/include";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				LIBRARY_SEARCH_PATHS = "$(SRCROOT)/opencv/lib/release";
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				OTHER_LDFLAGS = (
+					"-lopencv_calib3d",
+					"-lzlib",
+					"-lopencv_contrib",
+					"-lopencv_legacy",
+					"-lopencv_features2d",
+					"-lopencv_imgproc",
+					"-lopencv_video",
+					"-lopencv_core",
+				);
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/opencv/include";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		8ADAC4561504BC61008B5F2A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Example_MarkerBasedAR/Example_MarkerBasedAR-Prefix.pch";
+				INFOPLIST_FILE = "Example_MarkerBasedAR/Example_MarkerBasedAR-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		8ADAC4571504BC61008B5F2A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Example_MarkerBasedAR/Example_MarkerBasedAR-Prefix.pch";
+				INFOPLIST_FILE = "Example_MarkerBasedAR/Example_MarkerBasedAR-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		8ADAC42E1504BC61008B5F2A /* Build configuration list for PBXProject "Example_MarkerBasedAR" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8ADAC4531504BC61008B5F2A /* Debug */,
+				8ADAC4541504BC61008B5F2A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8ADAC4551504BC61008B5F2A /* Build configuration list for PBXNativeTarget "Example_MarkerBasedAR" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8ADAC4561504BC61008B5F2A /* Debug */,
+				8ADAC4571504BC61008B5F2A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 8ADAC42B1504BC61008B5F2A /* Project object */;
+}
