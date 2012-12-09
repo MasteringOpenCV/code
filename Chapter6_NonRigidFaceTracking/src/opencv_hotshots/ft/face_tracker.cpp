@@ -15,6 +15,7 @@
 #include "opencv_hotshots/ft/face_tracker.hpp"
 #include "opencv_hotshots/ft/ft.hpp"
 #include <iostream>
+#include "stdio.h"      // For 'sprintf()'
 #define fl at<float>
 //==============================================================================
 //==============================================================================

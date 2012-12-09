@@ -15,6 +15,8 @@
 #include "opencv_hotshots/ft/ft_data.hpp"
 #include <opencv2/highgui/highgui.hpp>
 #include <iostream>
+#include "stdio.h"	// For 'sprintf()'
+
 //==============================================================================
 void
 ft_data::

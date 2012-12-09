@@ -15,6 +15,7 @@
 #include "opencv_hotshots/ft/ft.hpp"
 #include <opencv2/highgui/highgui.hpp>
 #include <iostream>
+#include "stdio.h"      // For 'sprintf()'
 #define fl at<float>
 //==============================================================================
 void
