@@ -91,13 +91,23 @@ Per-chapter Requirements:
 --------------------------------------------------------------------------------
 Screenshots:
 --------------------------------------------------------------------------------
-- ![Ch1) Cartoonifier and Skin Changer for Android](https://raw.github.com/MasteringOpenCV/code/master/Chapter1_AndroidCartoonifier/screenshot.png)
-- ![Ch2) Marker-based Augmented Reality on iPhone or iPad](https://raw.github.com/MasteringOpenCV/code/master/Chapter2_iPhoneAR/screenshot.png)
-- ![Ch3) Marker-less Augmented Reality](https://raw.github.com/MasteringOpenCV/code/master/Chapter3_MarkerlessAR/screenshot.png)
-- ![Ch4) Exploring Structure from Motion using OpenCV](https://raw.github.com/MasteringOpenCV/code/master/Chapter4_StructureFromMotion/screenshot.png)
-- ![Ch5) Number Plate Recognition using SVM and Neural Networks](https://raw.github.com/MasteringOpenCV/code/master/Chapter5_NumberPlateRecognition/screenshot.png)
-- ![Ch6) Non-rigid Face Tracking](https://raw.github.com/MasteringOpenCV/code/master/Chapter6_NonRigidFaceTracking/screenshot.png)
-- ![Ch7) 3D Head Pose Estimation using AAM and POSIT](https://raw.github.com/MasteringOpenCV/code/master/Chapter7_HeadPoseEstimation/screenshot.png)
-- ![Ch8) Face Recognition using Eigenfaces or Fisherfaces](https://raw.github.com/MasteringOpenCV/code/master/Chapter8_FaceRecognition/screenshot.png)
-- ![Ch9) Developing Fluid Wall using the Microsoft Kinect](https://raw.github.com/MasteringOpenCV/code/master/Chapter9_FluidInteractionUsingKinect/screenshot.png)
+- Ch1) Cartoonifier and Skin Changer for Android:
+![Ch1) Cartoonifier and Skin Changer for Android](https://raw.github.com/MasteringOpenCV/code/master/Chapter1_AndroidCartoonifier/screenshot.png)
+- Ch2) Marker-based Augmented Reality on iPhone or iPad:
+![Ch2) Marker-based Augmented Reality on iPhone or iPad](https://raw.github.com/MasteringOpenCV/code/master/Chapter2_iPhoneAR/screenshot.png)
+- Ch3) Marker-less Augmented Reality:
+![Ch3) Marker-less Augmented Reality](https://raw.github.com/MasteringOpenCV/code/master/Chapter3_MarkerlessAR/screenshot.png)
+- Ch4) Exploring Structure from Motion using OpenCV:
+![Ch4) Exploring Structure from Motion using OpenCV](https://raw.github.com/MasteringOpenCV/code/master/Chapter4_StructureFromMotion/screenshot.png)
+- Ch5) Number Plate Recognition using SVM and Neural Networks:
+![Ch5) Number Plate Recognition using SVM and Neural Networks](https://raw.github.com/MasteringOpenCV/code/master/Chapter5_NumberPlateRecognition/screenshot.png)
+- Ch6) Non-rigid Face Tracking:
+![Ch6) Non-rigid Face Tracking](https://raw.github.com/MasteringOpenCV/code/master/Chapter6_NonRigidFaceTracking/screenshot.png)
+- Ch7) 3D Head Pose Estimation using AAM and POSIT:
+![Ch7) 3D Head Pose Estimation using AAM and POSIT](https://raw.github.com/MasteringOpenCV/code/master/Chapter7_HeadPoseEstimation/screenshot.png)
+- Ch8) Face Recognition using Eigenfaces or Fisherfaces:
+![Ch8) Face Recognition using Eigenfaces or Fisherfaces](https://raw.github.com/MasteringOpenCV/code/master/Chapter8_FaceRecognition/screenshot.png)
+- Ch9) Developing Fluid Wall using the Microsoft Kinect:
+![Ch9) Developing Fluid Wall using the Microsoft Kinect](https://raw.github.com/MasteringOpenCV/code/master/Chapter9_FluidInteractionUsingKinect/screenshot.png)
+
 
