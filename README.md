@@ -80,7 +80,7 @@ Per-chapter Requirements:
 - Ch1: webcam (for desktop app), or Android development system (for Android app).
 - Ch2: iOS development system (to build an iOS app).
 - Ch3: OpenGL built into OpenCV.
-- Ch4: PCL library (http://pointclouds.org/).
+- Ch4: PCL (http://pointclouds.org/) and SSBA (http://www.inf.ethz.ch/personal/chzach/opensource.html).
 - Ch5: nothing.
 - Ch6: nothing, but requires training data for execution.
 - Ch7: nothing.
