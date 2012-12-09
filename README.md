@@ -76,4 +76,14 @@ on Windows, Mac or Linux). Some chapters have further requirements, particularly
 - An understanding of linear algebra is expected, such as basic vector and matrix
   operations and eigen decomposition.
 
+Per-chapter Requirements:
+- Ch1: webcam (for desktop app), or Android development system (for Android app).
+- Ch2: iOS development system (to build an iOS app).
+- Ch3: OpenGL built into OpenCV.
+- Ch4: PCL library (http://pointclouds.org/).
+- Ch5: nothing.
+- Ch6: nothing, but requires training data for execution.
+- Ch7: nothing.
+- Ch8: webcam.
+- Ch9: Kinect depth sensor.
 
