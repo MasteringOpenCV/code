@@ -29,7 +29,7 @@ ADD_EXECUTABLE( evalOCR evalOCR.cpp OCR.cpp )
 TARGET_LINK_LIBRARIES( evalOCR  ${OpenCV_LIBS} )
 
 SET(RESOURCES
-	README
+	README.txt
 	SVM.xml
 	OCR.xml
 	test
