@@ -1,0 +1,5 @@
+The code is free and can be used for any purpose including commercial purposes.
+Packt Publishing and the authors can not be held liable for any use or result of the book's text or code.
+Further copyright & license info is found in the book's Copyright page.
+The book can be obtained from "http://www.packtpub.com/cool-projects-with-opencv/book".
+
