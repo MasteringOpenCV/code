@@ -1,7 +1,7 @@
 /*****************************************************************************
 *   3D Head Pose Estimation using AAM and POSIT
 ******************************************************************************
-*   by Daniel Lélis Baggio, 5th Dec 2012
+*   by Daniel LÃ©lis Baggio, 29th Dec 2012
 *   http://code.google.com/p/ehci/
 ******************************************************************************
 *   Ch7 of the book "Mastering OpenCV with Practical Computer Vision Projects"
@@ -13,7 +13,6 @@
 #include <opencv2/imgproc/imgproc_c.h>
 #include <opencv2/highgui/highgui.hpp>*/
 #include <opencv2/opencv.hpp>
-#include "InverseCompose.h"
 #include "PAW.h"
 #include "Triangle.h"
 
@@ -27,7 +26,6 @@
 using namespace cv;
 using namespace std;
 
-InverseCompose test;
 
 void warpTextureFromTriangle(Point2f srcTri[3], Mat originalImage, Point2f dstTri[3], Mat warp_final){
     //int t, ellap;
@@ -51,33 +49,19 @@ void warpTextureFromTriangle(Point2f srcTri[3], Mat originalImage, Point2f dstTr
     }
     
     warp_mat = getAffineTransform( srcTri, dstTri );
-    //ellap = clock();
-    //printf ("2.1 %4f ms\n",(float)(ellap-t)/CLOCKS_PER_SEC*1000);
+    
 
     /// Apply the Affine Transform just found to the src image
-    
-    
-    //t = clock();
     Rect roi(190, 250, 240,150);
-    //Point a cv::Mat header at it (no allocation is done)
     Mat originalImageRoi= originalImage(roi);
     Mat warp_dstRoi     = warp_dst(roi);
-
-
-    //warpAffine( originalImage, warp_dst, warp_mat, warp_dst.size() );
     warpAffine( originalImageRoi, warp_dstRoi, warp_mat, warp_dstRoi.size() );
-    
-    //ellap = clock();
-    //printf ("2.2 %4f ms\n",(float)(ellap-t)/CLOCKS_PER_SEC*1000);
-    
-    //t=clock();
     cvFillConvexPoly( new IplImage(warp_mask), trianglePoints, 3, CV_RGB(255,255,255), CV_AA, 0 );    
     warp_dst.copyTo(warp_final,warp_mask);
-    //ellap = clock();
-    //printf ("2.3 %4f ms\n",(float)(ellap-t)/CLOCKS_PER_SEC*1000);
+    
 }
 
-PCA loadPCA(char* fileName, int& rows, int& cols,Mat& pcaset){
+PCA loadPCA(const char* fileName, int& rows, int& cols,Mat& pcaset){
     FILE* in = fopen(fileName,"r");
     int a;
     fscanf(in,"%d%d",&rows,&cols);
@@ -119,8 +103,7 @@ void drawPoints(Mat pcaset, PCA pca, PCA pcaTexture, std::vector<CvPoint>& point
     char imageFileName[100];
     sprintf(imageFileName,"09-%dm.jpg",imageCount);
     
-//    Mat image = cvLoadImage(imageFileName);
-    Mat coeffs = Mat::zeros (1,3, CV_64F);// pca.eigenvalue1s.t();
+    Mat coeffs = Mat::zeros (1,3, CV_64F);
     
     namedWindow("AAM");
     
@@ -150,26 +133,13 @@ void drawPoints(Mat pcaset, PCA pca, PCA pcaTexture, std::vector<CvPoint>& point
         Mat back;
         Mat backTexture;
         Mat aamTexture =  Mat::zeros (480,640, imageFrame.type());
-        /*coeffs.at(
-
-            corrigir o codigo de baixo, o coeff é o original == MUDAR PARA O DO BACK!*/
+        
         pca.backProject(coeffs,back);
         pcaTexture.backProject(coeffs,backTexture);
-        //imshow("Back project",backTexture);        
+        
 
         for(int i=0;i<pointsInsideHull.size();i++){
-            //aamTexture.ptr<float>(pointsInsideHull.at(i).y)[3*pointsInsideHull.at(i).x] = backTexture.at<double>(0,3*i+0);
-            //aamTexture.ptr<float>(pointsInsideHull.at(i).y)[3*pointsInsideHull.at(i).x+1] = backTexture.at<double>(0,3*i+1);
-            //aamTexture.ptr<float>(pointsInsideHull.at(i).y)[3*pointsInsideHull.at(i).x+2] = backTexture.at<double>(0,3*i+2);
-            //aamTexture.at<Vec3f>(pointsInsideHull.at(i))[1] = backTexture.at<double>(0,3*i+1);
-            //aamTexture.at<Vec3f>(pointsInsideHull.at(i))[2] = backTexture.at<double>(0,3*i+2);
-            //cout << pointsInsideHull.at(i).x << " " << pointsInsideHull.at(i).y << endl;
-            
-            /*int col = pointsInsideHull.at(i).x;
-            int row = pointsInsideHull.at(i).y;
-
-            uchar* ptr   = (uchar*)(aamTexture.data + row * aamTexture.step);*/
-
+        
             double v1 = ((backTexture.at<double>(0,3*i+0))*255);
             double v2 = ((backTexture.at<double>(0,3*i+1))*255);
             double v3 = ((backTexture.at<double>(0,3*i+2))*255);
@@ -184,37 +154,9 @@ void drawPoints(Mat pcaset, PCA pca, PCA pcaTexture, std::vector<CvPoint>& point
             aamTexture.at<Vec3b>(pointsInsideHull.at(i))[0] = v1;
             aamTexture.at<Vec3b>(pointsInsideHull.at(i))[1] = v2;
             aamTexture.at<Vec3b>(pointsInsideHull.at(i))[2] = v3;
-            
-            //int pos = pt.y* img->widthStep + pt.x *3;
-            //pcaTextureSet.at<double>(imageIndex,3*j  ) = ((double)*((uchar*)(warp_final.data  + pos)))/255.0f;
-            
-            //aamTexture.ptr<int>(pointsInsideHull.at(i).y)[3*pointsInsideHull.at(i).x+0] = backTexture.at<double>(0,3*i+0)*255;
-            //aamTexture.ptr<int>(pointsInsideHull.at(i).y)[3*pointsInsideHull.at(i).x+1] = backTexture.at<double>(0,3*i+1)*255;
-            //aamTexture.ptr<int>(pointsInsideHull.at(i).y)[3*pointsInsideHull.at(i).x+2] = backTexture.at<double>(0,3*i+2)*255;
-            
-            
-            //aamTexture.at<int>(pointsInsideHull.at(i));
-            //aamTexture.at<Vec3d>(pointsInsideHull.at(i))[1] = backTexture.at<double>(0,3*i+1);
-            //aamTexture.at<Vec3d>(pointsInsideHull.at(i))[2] = backTexture.at<double>(0,3*i+2);
+               
         }
         imshow("AAM Texture",aamTexture);
-
-    /*    cout << back.at<double>(0,0) << endl;
-        back.at<double>(0,0) = back.at<double>(0,0);
-        cout << back.at<double>(0,0) << endl;*/
-
-        
-        /*for(int i=0;i<pcaset.rows;i++){
-            for(int j=0;j<(pcaset.cols/2)-1;j++){
-
-                Point2f p (pcaset.at<double>(i,2*j), pcaset.at<double>(i,2*j+1));
-                Point2f p2 (pcaset.at<double>(i,2*j+2), pcaset.at<double>(i,2*j+3));
-                circle( image, p, i+1, CV_RGB(100*i,255,0), -1, 8);
-                circle( image, p2, i+1, CV_RGB(100*i,255,0), -1, 8);
-                line(image,p,p2,CV_RGB(0,255,100*i),1,8,0);
-            }        
-        }*/
-
 
         //draw aam
         for(int j=0;j<(back.cols/2)-1;j++){
@@ -226,12 +168,8 @@ void drawPoints(Mat pcaset, PCA pca, PCA pcaTexture, std::vector<CvPoint>& point
             circle( image, p2, 4, CV_RGB(128,0,0), -1, 8);
                 
         }        
-        
-        ellap = clock();
-        printf ("1. %4f ms\n",(float)(ellap-t)/CLOCKS_PER_SEC*1000);
-
-        //warp texture
-        t = clock();
+                        
+        //warp texture        
 
         for(int i=0;i<triangleIndexes.size()/3;i++){
             Point2f sourcePoints[3];
@@ -246,9 +184,7 @@ void drawPoints(Mat pcaset, PCA pca, PCA pcaTexture, std::vector<CvPoint>& point
             }            
             warpTextureFromTriangle(sourcePoints, aamTexture, destPoints, image);
         }
-        ellap = clock();
-        printf ("2. %4f ms\n",(float)(ellap-t)/CLOCKS_PER_SEC*1000);
-
+        ellap = clock();        
         t = clock();
 
         image.copyTo(imageFrame);
@@ -260,8 +196,7 @@ void drawPoints(Mat pcaset, PCA pca, PCA pcaTexture, std::vector<CvPoint>& point
         if(c=='3') imageCount=3;
 
         cvReleaseImage(&img);
-        ellap = clock();
-        printf ("3. %4f ms\n\n",(float)(ellap-t)/CLOCKS_PER_SEC*1000);
+        ellap = clock();        
     }
 
 
@@ -307,7 +242,6 @@ void draw_subdiv_edge( IplImage* img, CvSubdiv2DEdge edge, CvScalar color )
     
 }
 
-//TODO create map of already painted so won't paint again
 int countFrame=0;
 void draw_subdiv( IplImage* img, CvSubdiv2D* subdiv,int par,CvNextEdgeType triangleDirection, std::vector<CvPoint> points,Mat pcaSet,Mat originalImage, int imageIndex, Mat& warp_final, vector<int>& triangleVertices)                
 {
@@ -325,7 +259,7 @@ void draw_subdiv( IplImage* img, CvSubdiv2D* subdiv,int par,CvNextEdgeType trian
     cvStartReadSeq( (CvSeq*)(subdiv->edges), &reader, 0 );
 
     CvPoint buf[3];
-    printf("Total %d\n",total);
+    
     for( i = 0; i < total; i++ )
     {
         CvQuadEdge2D* edge = (CvQuadEdge2D*)(reader.ptr);
@@ -333,9 +267,6 @@ void draw_subdiv( IplImage* img, CvSubdiv2D* subdiv,int par,CvNextEdgeType trian
         if( CV_IS_SET_ELEM( edge ))
         {
             //draw_subdiv_edge( img, (CvSubdiv2DEdge)edge + 1, voronoi_color );
-            
-            //TODO optimize this part of code, since we could use a map (and put order) or get points index from delaunay subdiv
-            //if(i==par){
             CvSubdiv2DEdge t = (CvSubdiv2DEdge)edge ;
             int shouldPaint=1;
             for(int j=0;j<3;j++){
@@ -356,15 +287,14 @@ void draw_subdiv( IplImage* img, CvSubdiv2D* subdiv,int par,CvNextEdgeType trian
                     int px = buf[j].x;
                     int py = buf[j].y;
                     for(int k=0;k<points.size();k++){
-                        if((points[k].x ==px) && (points[k].y==py)){
-                            printf("%d ",k);
+                        if((points[k].x ==px) && (points[k].y==py)){                            
                             originalVertices[j] = k;
                             triangleVertices.push_back(k);
                             break;//could there be overlapped points
                         }
                     }                        
                 }
-                printf("\n");
+                
                     
                 //originalVertices stores the correspondence of vertices 0, 1 and 2 of the currently mapped triangle
                 //with their annotated points (which are in pcaSet)
@@ -391,11 +321,7 @@ void draw_subdiv( IplImage* img, CvSubdiv2D* subdiv,int par,CvNextEdgeType trian
                 dstTri[1] = Point2f( buf[1].x, buf[1].y );
                 dstTri[2] = Point2f( buf[2].x, buf[2].y );
 
-                warpTextureFromTriangle(srcTri, originalImage, dstTri, warp_final);
-
-                /*cvLine(new IplImage(warp_final),cvPoint(p1x,p1y),cvPoint(p2x,p2y),CV_RGB(0,255,0),1,8,0);
-                cvLine(new IplImage(warp_final),cvPoint(p2x,p2y),cvPoint(p3x,p3y),CV_RGB(0,255,0),1,8,0);
-                cvLine(new IplImage(warp_final),cvPoint(p3x,p3y),cvPoint(p1x,p1y),CV_RGB(0,255,0),1,8,0);*/
+                warpTextureFromTriangle(srcTri, originalImage, dstTri, warp_final);           
             }
 
             
@@ -404,8 +330,7 @@ void draw_subdiv( IplImage* img, CvSubdiv2D* subdiv,int par,CvNextEdgeType trian
         CV_NEXT_SEQ_ELEM( elem_size, reader );
     }
     
-    string num = static_cast<ostringstream*>( &(ostringstream() << countFrame++) )->str();
-    //imshow("Warped final "+ num,warp_final);
+    string num = static_cast<ostringstream*>( &(ostringstream() << countFrame++) )->str();    
     Mat triangleMat(triangleFrame);
     imshow("Triangle frame",triangleMat);
 }
@@ -419,9 +344,6 @@ void createAAM(PCA pca, Mat pcaSet, PCA& pcaTexture, std::vector<CvPoint>& point
     subdiv = cvCreateSubdivDelaunay2D(rect,storage);//init_delaunay( storage, rect );
     std::vector<CvPoint> points;
 
-    //insert PCA mean points into subdivision
-    //for(int i=0;i<pca.mean
-    //cvSubdivDelaunay2DInsert( subdiv, fp );
     for(int i=0;i<pca.mean.cols/2;i++){        
         double x = pca.mean.at<double>(0,2*i);
         double y = pca.mean.at<double>(0,2*i+1);
@@ -431,9 +353,7 @@ void createAAM(PCA pca, Mat pcaSet, PCA& pcaTexture, std::vector<CvPoint>& point
         cvSubdivDelaunay2DInsert( subdiv, fp );
     }
 
-    //following is optional
-    //cvCalcSubdivVoronoi2D( subdiv );
-
+   
     //create convex hull
     
     CvPoint* pointsHull = (CvPoint*)malloc( points.size() * sizeof(pointsHull[0]));
@@ -460,10 +380,6 @@ void createAAM(PCA pca, Mat pcaSet, PCA& pcaTexture, std::vector<CvPoint>& point
     }
 
     CvMat hullMatPoints = cvMat( 1, hullcount, CV_32SC2, pointsHullFinal);
-
-
-        
-
 
     //check if point belongs
     for(int i=0;i< 640;i++){
@@ -508,35 +424,19 @@ void createAAM(PCA pca, Mat pcaSet, PCA& pcaTexture, std::vector<CvPoint>& point
             CvPoint pt = pointsInsideHull.at(pointIndex);            
             int pos = pt.y* img->widthStep + pt.x *3;
 
-            /*pcaTextureSet.at<Vec3f>(imageIndex,j  )[0] = ((double)*((uchar*)(warp_final.data  + pos)))/255.0f;
-            pcaTextureSet.at<Vec3f>(imageIndex,j  )[1] = ((double)*((uchar*)(warp_final.data  + pos+1)))/255.0f;
-            pcaTextureSet.at<Vec3f>(imageIndex,j ) [2] = ((double)*((uchar*)(warp_final.data  + pos+2)))/255.0f;*/
 
             pcaTextureSet.at<double>(imageIndex,3*j  ) = ((double)*((uchar*)(warp_final.data  + pos)))/255.0f;
             pcaTextureSet.at<double>(imageIndex,3*j+1) = ((double)*((uchar*)(warp_final.data  + pos+1)))/255.0f;
             pcaTextureSet.at<double>(imageIndex,3*j+2) = ((double)*((uchar*)(warp_final.data  + pos+2)))/255.0f;
-        //    if(j==100){
-            //    cout << "Test for " << pos << " x " << pt.x << " y " << pt.y << endl;
-                //cout << "Original " << ((double)*((uchar*)(((IplImage*)&warp_final)->imageData + pos)))/255.0f << endl;
-            //printf("%.4lf %.4lf %.4lf ", pcaTextureSet.at<double>(imageIndex,3*j), pcaTextureSet.at<double>(imageIndex,3*j+1), pcaTextureSet.at<double>(imageIndex,3*j+1) );
-            //}
-            /*if(j==0)
-                cout << "Image pos " << &img << endl;*/
             pointIndex++;
         }
-        printf("\n");
-        //imshow(imageFileName,warp_final);
+
         cvReleaseImage(&img);
         warp_final.release();
         matImgFrame.release();
         
         
     }
-
-    //TODO construir o PCA da textura
-    //talvez tenha que usar o low memory
-
-    //cout << pcaset << endl;
 
     pcaTexture= PCA(pcaTextureSet, // pass the data
         Mat(), // we do not have a pre-computed mean vector,
@@ -547,12 +447,7 @@ void createAAM(PCA pca, Mat pcaSet, PCA& pcaTexture, std::vector<CvPoint>& point
         // the matrix columns)
         pcaTextureSet.cols// specify, how many principal components to retain
         );
-    
-    /*namedWindow("Original");
-    imshow("Original",matImgFrame);*/
-    //namedWindow("Statistical Texture");
-    //imshow("Statistical Texture",pcaTextureSet);
-    
+     
 }
 
 
@@ -560,7 +455,7 @@ void createAAM(PCA pca, Mat pcaSet, PCA& pcaTexture, std::vector<CvPoint>& point
 void testMain( int argc, char** argv ){
     Mat pcaset;
     int rows,cols;
-    PCA pcaShape = loadPCA(argv[1],rows,cols,pcaset);
+    PCA pcaShape = loadPCA("simple-aam.txt",rows,cols,pcaset);
 
 
     cout << "Result: eigenvalues" << endl;
@@ -592,35 +487,24 @@ void testMain( int argc, char** argv ){
     std::vector<int>     triangleIndexes;
     std::vector<int>     triangleUnrepeat;
     createAAM(pcaShape,pcaset,pcaTexture, pointsInsideHull,triangleIndexes);
-    //imshow("Texture mean", pcaTexture.mean);
     
-    printf("Before\n");
+ 
     set<Triangle> triangles;
-    for(int i=0;i<triangleIndexes.size()/3;i+=1){
-        printf("%2d %2d %2d\n",triangleIndexes.at(3*i),triangleIndexes.at(3*i+1),triangleIndexes.at(3*i+2));
+    for(int i=0;i<triangleIndexes.size()/3;i+=1){        
         Triangle t(triangleIndexes.at(3*i),triangleIndexes.at(3*i+1),triangleIndexes.at(3*i+2));
         triangles.insert(t);
     }
-
-    printf("\nAfter\n");
+    
     set<Triangle>::iterator it;
     for (it=triangles.begin(); it!=triangles.end(); it++){
-        cout << (*it).v1 << " " << (*it).v2 << " " << (*it).v3 << endl;
         triangleUnrepeat.push_back( (*it).v1);
         triangleUnrepeat.push_back( (*it).v2);
         triangleUnrepeat.push_back( (*it).v3);
     }
     cout << endl;
-
-    //drawPoints(pcaset,pcaShape, pcaTexture, pointsInsideHull,triangleIndexes);
     drawPoints(pcaset,pcaShape, pcaTexture, pointsInsideHull,triangleUnrepeat);
 }
 
-
-void testPAW(){
-    Mat m1,m2;
-    PAW paw(m1,m2,640,480);
-}
 
 int main( int argc, char** argv ){
     testMain(argc,argv);
