@@ -1,7 +1,7 @@
 /*****************************************************************************
 *   Number Plate Recognition using SVM and Neural Networks
 ******************************************************************************
-*   by David Millán Escrivá, 5th Dec 2012
+*   by David Millï¿½n Escrivï¿½, 5th Dec 2012
 *   http://blog.damiles.com
 ******************************************************************************
 *   Ch5 of the book "Mastering OpenCV with Practical Computer Vision Projects"
@@ -24,7 +24,7 @@ using namespace std;
 using namespace cv;
 OCR ocr;
 
-int generateRandom(int n, int min, int max, vector<int> *samples){
+void generateRandom(int n, int min, int max, vector<int> *samples){
     int range=max-min;
     int r=rand()%range+min;
     if(samples->at(r)==0){
