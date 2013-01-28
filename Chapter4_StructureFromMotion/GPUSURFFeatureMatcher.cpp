@@ -20,6 +20,7 @@
 
 using namespace std;
 using namespace cv;
+using namespace cv::core;
 using namespace cv::gpu;
 
 //c'tor
@@ -27,7 +28,7 @@ GPUSURFFeatureMatcher::GPUSURFFeatureMatcher(vector<cv::Mat>& imgs_,
 									   vector<std::vector<cv::KeyPoint> >& imgpts_) :
 	imgpts(imgpts_),use_ratio_test(true)
 {
-	cv::gpu::printShortCudaDeviceInfo(cv::gpu::getDevice());
+	printShortCudaDeviceInfo(cv::gpu::getDevice());
 
 	extractor = new gpu::SURF_GPU();
 	
