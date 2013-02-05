@@ -15,6 +15,7 @@
 		8A2051981510BCB900E80270 /* SimpleVisualizationController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8A2051971510BCB900E80270 /* SimpleVisualizationController.mm */; };
 		8A279D1F150E3F88005F4854 /* MarkerDetector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8A279D1E150E3F88005F4854 /* MarkerDetector.cpp */; };
 		8A28CB2615249CEA0049925A /* TinyLA.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8A28CB2515249CEA0049925A /* TinyLA.cpp */; };
+		8A8BD08D15E4DFE300B9E08E /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A8BD08C15E4DFE300B9E08E /* opencv2.framework */; };
 		8ADAC4391504BC61008B5F2A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8ADAC4381504BC61008B5F2A /* UIKit.framework */; };
 		8ADAC43B1504BC61008B5F2A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8ADAC43A1504BC61008B5F2A /* Foundation.framework */; };
 		8ADAC43D1504BC61008B5F2A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8ADAC43C1504BC61008B5F2A /* CoreGraphics.framework */; };
@@ -38,18 +39,18 @@
 		8A205171150F8D2000E80270 /* Marker.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Marker.cpp; sourceTree = "<group>"; };
 		8A20518B1510A35F00E80270 /* EAGLView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EAGLView.h; sourceTree = "<group>"; };
 		8A20518C1510A35F00E80270 /* EAGLView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EAGLView.m; sourceTree = "<group>"; };
-		8A20518E1510A58F00E80270 /* VisualizationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VisualizationController.h; sourceTree = "<group>"; };
 		8A20518F1510A6E300E80270 /* GeometryTypes.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = GeometryTypes.hpp; sourceTree = "<group>"; };
 		8A2051901510BB7B00E80270 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
 		8A2051911510BB7B00E80270 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		8A2051941510BB8C00E80270 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		8A2051961510BCB900E80270 /* SimpleVisualizationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleVisualizationController.h; sourceTree = "<group>"; };
 		8A2051971510BCB900E80270 /* SimpleVisualizationController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SimpleVisualizationController.mm; sourceTree = "<group>"; };
-		8A2051A015112D3B00E80270 /* MarkerDetectionFacade.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MarkerDetectionFacade.hpp; sourceTree = "<group>"; };
 		8A279D1C150E3F7E005F4854 /* MarkerDetector.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = MarkerDetector.hpp; sourceTree = "<group>"; };
 		8A279D1E150E3F88005F4854 /* MarkerDetector.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MarkerDetector.cpp; sourceTree = "<group>"; };
 		8A28CB2315249CDA0049925A /* TinyLA.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = TinyLA.hpp; sourceTree = "<group>"; };
 		8A28CB2515249CEA0049925A /* TinyLA.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TinyLA.cpp; sourceTree = "<group>"; };
+		8A8BD08C15E4DFE300B9E08E /* opencv2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = opencv2.framework; sourceTree = "<group>"; };
+		8AAEC1C815E6427300CBC28C /* DebugHelpers.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = DebugHelpers.hpp; sourceTree = "<group>"; };
 		8ADAC4341504BC61008B5F2A /* Example_MarkerBasedAR.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example_MarkerBasedAR.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8ADAC4381504BC61008B5F2A /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		8ADAC43A1504BC61008B5F2A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -79,6 +80,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8A8BD08D15E4DFE300B9E08E /* opencv2.framework in Frameworks */,
 				8A2051931510BB7B00E80270 /* OpenGLES.framework in Frameworks */,
 				8A2051951510BB8C00E80270 /* QuartzCore.framework in Frameworks */,
 				8A2051921510BB7B00E80270 /* GLKit.framework in Frameworks */,
@@ -94,15 +96,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		8A20517D150FAE6600E80270 /* Interfaces */ = {
-			isa = PBXGroup;
-			children = (
-				8A2051A015112D3B00E80270 /* MarkerDetectionFacade.hpp */,
-				8A20518E1510A58F00E80270 /* VisualizationController.h */,
-			);
-			name = Interfaces;
-			sourceTree = "<group>";
-		};
 		8A20517F1510A30800E80270 /* Rendering */ = {
 			isa = PBXGroup;
 			children = (
@@ -117,6 +110,7 @@
 		8A279D20150E3F8C005F4854 /* MarkerDetector */ = {
 			isa = PBXGroup;
 			children = (
+				8AAEC1C815E6427300CBC28C /* DebugHelpers.hpp */,
 				8A279D1C150E3F7E005F4854 /* MarkerDetector.hpp */,
 				8A279D1E150E3F88005F4854 /* MarkerDetector.cpp */,
 				8A205170150F8D1800E80270 /* Marker.hpp */,
@@ -147,6 +141,7 @@
 		8ADAC4371504BC61008B5F2A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8A8BD08C15E4DFE300B9E08E /* opencv2.framework */,
 				8A2051941510BB8C00E80270 /* QuartzCore.framework */,
 				8A2051901510BB7B00E80270 /* GLKit.framework */,
 				8A2051911510BB7B00E80270 /* OpenGLES.framework */,
@@ -163,9 +158,8 @@
 		8ADAC43E1504BC61008B5F2A /* Example_MarkerBasedAR */ = {
 			isa = PBXGroup;
 			children = (
-				8A20517F1510A30800E80270 /* Rendering */,
-				8A20517D150FAE6600E80270 /* Interfaces */,
 				8A279D20150E3F8C005F4854 /* MarkerDetector */,
+				8A20517F1510A30800E80270 /* Rendering */,
 				8ADAC46A1504C9DE008B5F2A /* VideoSource */,
 				8ADAC4471504BC61008B5F2A /* AppDelegate.h */,
 				8ADAC4481504BC61008B5F2A /* AppDelegate.m */,
@@ -229,7 +223,7 @@
 		8ADAC42B1504BC61008B5F2A /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0430;
+				LastUpgradeCheck = 0440;
 			};
 			buildConfigurationList = 8ADAC42E1504BC61008B5F2A /* Build configuration list for PBXProject "Example_MarkerBasedAR" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -318,6 +312,7 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = "\"$(SRCROOT)\"";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -330,9 +325,7 @@
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = "$(SRCROOT)/opencv/include";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
-				LIBRARY_SEARCH_PATHS = "$(SRCROOT)/opencv/lib/debug";
 				OTHER_LDFLAGS = (
 					"-lopencv_calib3d",
 					"-lzlib",
@@ -345,7 +338,6 @@
 				);
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/opencv/include";
 			};
 			name = Debug;
 		};
@@ -357,14 +349,14 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
+				FRAMEWORK_SEARCH_PATHS = "\"$(SRCROOT)\"";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = "$(SRCROOT)/opencv/include";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
-				LIBRARY_SEARCH_PATHS = "$(SRCROOT)/opencv/lib/release";
+				LIBRARY_SEARCH_PATHS = "";
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				OTHER_LDFLAGS = (
 					"-lopencv_calib3d",
@@ -378,7 +370,6 @@
 				);
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/opencv/include";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -386,10 +377,21 @@
 		8ADAC4561504BC61008B5F2A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_CXX_LIBRARY = "libc++";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Example_MarkerBasedAR/Example_MarkerBasedAR-Prefix.pch";
+				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = "Example_MarkerBasedAR/Example_MarkerBasedAR-Info.plist";
+				LIBRARY_SEARCH_PATHS = "";
+				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				USER_HEADER_SEARCH_PATHS = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -397,10 +399,21 @@
 		8ADAC4571504BC61008B5F2A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_CXX_LIBRARY = "libc++";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Example_MarkerBasedAR/Example_MarkerBasedAR-Prefix.pch";
+				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = "Example_MarkerBasedAR/Example_MarkerBasedAR-Info.plist";
+				LIBRARY_SEARCH_PATHS = "";
+				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				USER_HEADER_SEARCH_PATHS = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
