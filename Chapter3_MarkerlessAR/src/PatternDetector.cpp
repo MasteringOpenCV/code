@@ -45,7 +45,7 @@ void PatternDetector::train(const Pattern& pattern)
     // First we clear old train data:
     m_matcher->clear();
 
-    // That we add vector of descriptors (each descriptors matrix describe one image). 
+    // Then we add vector of descriptors (each descriptors matrix describe one image). 
     // This allows us to perform search across multiple images:
     std::vector<cv::Mat> descriptors(1);
     descriptors[0] = pattern.descriptors.clone(); 
