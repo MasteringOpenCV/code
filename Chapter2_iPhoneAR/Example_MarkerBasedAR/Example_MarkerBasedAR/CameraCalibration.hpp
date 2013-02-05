@@ -18,7 +18,8 @@
 #include "GeometryTypes.hpp"
 
 /**
- * A camera calibraiton class that stores intrinsic matrix and distorsion coefficients.
+ * A camera calibraiton class that stores intrinsic matrix
+ * and distorsion vector.
  */
 class CameraCalibration
 {

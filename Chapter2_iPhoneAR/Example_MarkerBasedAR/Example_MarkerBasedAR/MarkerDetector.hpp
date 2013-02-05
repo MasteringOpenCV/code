@@ -22,38 +22,53 @@
 // File includes:
 #include "BGRAVideoFrame.h"
 #include "CameraCalibration.hpp"
-#include "MarkerDetectionFacade.hpp"
 
 ////////////////////////////////////////////////////////////////////
 // Forward declaration:
 class Marker;
 
 /**
- * A top-level class incapsulating marker detector algorithm
+ * A top-level class that encapsulate marker detector algorithm
  */
-class MarkerDetector : public MarkerDetectionFacade
+class MarkerDetector
 {
 public:
-  
+  typedef std::vector<cv::Point>    PointsVector;
+  typedef std::vector<PointsVector> ContoursVector;
+
+
   /**
    * Initialize a new instance of marker detector object
-   * @calibration[in] - Camera calibration (intrinsic and distorsion components) necessary for pose estimation.
+   * @calibration[in] - Camera calibration (intrinsic and distortion components) necessary for pose estimation.
    */
   MarkerDetector(CameraCalibration calibration);
   
+  //! Searches for markes and fills the list of transformation for found markers
   void processFrame(const BGRAVideoFrame& frame);
-  
   
   const std::vector<Transformation>& getTransformations() const;
   
 protected:
+
+  //! Main marker detection routine
   bool findMarkers(const BGRAVideoFrame& frame, std::vector<Marker>& detectedMarkers);
 
-  void prepareImage(const cv::Mat& bgraMat, cv::Mat& grayscale);
-  void performThreshold(const cv::Mat& grayscale, cv::Mat& thresholdImg);
-  void findContours(const cv::Mat& thresholdImg, std::vector<std::vector<cv::Point> >& contours,int minContourPointsAllowed);
-  void findMarkerCandidates(const std::vector<std::vector<cv::Point> >& contours, std::vector<Marker>& detectedMarkers);
-  void detectMarkers(const cv::Mat& grayscale, std::vector<Marker>& detectedMarkers);
+  //! Converts image to grayscale
+  void prepareImage(const cv::Mat& bgraMat, cv::Mat& grayscale) const;
+
+  //! Performs binary threshold
+  void performThreshold(const cv::Mat& grayscale, cv::Mat& thresholdImg) const;
+
+  //! Detects appropriate contours
+  void findContours(cv::Mat& thresholdImg, ContoursVector& contours, int minContourPointsAllowed) const;
+
+  //! Finds marker candidates among all contours
+  void findCandidates(const ContoursVector& contours, std::vector<Marker>& detectedMarkers);
+  
+  //! Tries to recognize markers by detecting marker code 
+  void recognizeMarkers(const cv::Mat& grayscale, std::vector<Marker>& detectedMarkers);
+
+  //! Calculates marker poses in 3D
   void estimatePosition(std::vector<Marker>& detectedMarkers);
 
 private:
@@ -66,7 +81,9 @@ private:
   
   cv::Mat m_grayscaleImage;
   cv::Mat m_thresholdImg;  
-  std::vector<std::vector<cv::Point> > m_contours;
+  cv::Mat canonicalMarkerImage;
+
+  ContoursVector           m_contours;
   std::vector<cv::Point3f> m_markerCorners3d;
   std::vector<cv::Point2f> m_markerCorners2d;
 };

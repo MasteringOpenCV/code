@@ -11,13 +11,14 @@
 *****************************************************************************/
 
 #import <Foundation/Foundation.h>
-#import "VisualizationController.h"
 
 ////////////////////////////////////////////////////////////////////
 // File includes:
 #import "EAGLView.h"
+#import "CameraCalibration.hpp"
+#import "BGRAVideoFrame.h"
 
-@interface SimpleVisualizationController : NSObject<VisualizationController>
+@interface SimpleVisualizationController : NSObject
 {
   EAGLView * m_glview;
   GLuint m_backgroundTextureId;

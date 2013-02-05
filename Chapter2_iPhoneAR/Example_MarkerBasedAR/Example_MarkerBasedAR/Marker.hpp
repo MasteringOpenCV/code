@@ -41,13 +41,16 @@ public:
   
 public:
   
-  //id of  the marker
+  // Id of  the marker
   int id;
   
-  //marker transformation wrt to the camera
+  // Marker transformation with regards to the camera
   Transformation transformation;
   
   std::vector<cv::Point2f> points;
+
+  // Helper function to draw the marker contour over the image
+  void drawContour(cv::Mat& image, cv::Scalar color = CV_RGB(0,250,0)) const;
 };
 
 #endif

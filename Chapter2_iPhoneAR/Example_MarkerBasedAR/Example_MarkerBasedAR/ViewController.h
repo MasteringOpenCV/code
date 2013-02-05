@@ -15,15 +15,10 @@
 ////////////////////////////////////////////////////////////////////
 // File includes:
 #import "EAGLView.h"
-#import "VideoSource.h"
-#import "MarkerDetectionFacade.hpp"
-#import "VisualizationController.h"
 
-@interface ViewController : UIViewController<VideoSourceDelegate>
+@interface ViewController : UIViewController
 {
-  VideoSource *                        m_videoSource;
-  std::auto_ptr<MarkerDetectionFacade> m_pipeline;
-  id<VisualizationController> m_renderer;
 }
-@property (weak, nonatomic) IBOutlet EAGLView *m_glview;
+
+@property (weak, nonatomic) IBOutlet EAGLView *glview;
 @end

@@ -11,6 +11,7 @@
 *****************************************************************************/
 
 #include "Marker.hpp"
+#include "DebugHelpers.hpp"
 
 Marker::Marker()
 : id(-1)
@@ -91,9 +92,14 @@ int Marker::getMarkerId(cv::Mat &markerImage,int &nRotations)
   assert(markerImage.type() == CV_8UC1);
   
   cv::Mat grey = markerImage;
-  //threshold image
+
+  // Threshold image
   cv::threshold(grey, grey, 125, 255, cv::THRESH_BINARY | cv::THRESH_OTSU);
-    
+
+#ifdef SHOW_DEBUG_IMAGES
+  cv::showAndSave("Binary marker", grey);
+#endif
+
   //Markers  are divided in 7x7 regions, of which the inner 5x5 belongs to marker info
   //the external border should be entirely black
   
@@ -166,4 +172,14 @@ int Marker::getMarkerId(cv::Mat &markerImage,int &nRotations)
   }
   
   return -1;
+}
+
+void Marker::drawContour(cv::Mat& image, cv::Scalar color) const
+{
+    float thickness = 2;
+
+    cv::line(image, points[0], points[1], color, thickness, CV_AA);
+    cv::line(image, points[1], points[2], color, thickness, CV_AA);
+    cv::line(image, points[2], points[3], color, thickness, CV_AA);
+    cv::line(image, points[3], points[0], color, thickness, CV_AA);
 }
