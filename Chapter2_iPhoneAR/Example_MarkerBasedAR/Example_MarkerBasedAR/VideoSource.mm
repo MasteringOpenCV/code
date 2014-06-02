@@ -146,7 +146,7 @@
         AVCaptureDeviceInput *videoIn = [AVCaptureDeviceInput deviceInputWithDevice:videoDevice error:&error];
         self.deviceInput = videoIn;
         
-        if (!error)
+        if (nil != videoIn)
         {
             if ([[self captureSession] canAddInput:videoIn])
             {
@@ -160,7 +160,7 @@
         }
         else
         {
-            NSLog(@"Couldn't create video input");
+    		NSLog(@"Couldn't create video input: %@", [error localizedDescription]);
             return FALSE;
         }
     }
