@@ -12,8 +12,8 @@ Full source-code for the book.
 --------------------------------------------------------------------------------
 To build & run the projects for the book:
 --------------------------------------------------------------------------------
-- Install OpenCV v2.4.2 or later. eg: go to "http://opencv.org/", click on
-  Downloads, download the latest OpenCV (including prebuilt library), and extract
+- Install OpenCV (versions between 2.4.2 to 2.4.11 are supported, whereas OpenCV 3.0 is not yet supported). eg: go to "http://opencv.org/", click on
+  Downloads, download the latest OpenCV 2.4 version (including prebuilt library), and extract
   it to "C:\OpenCV" for Windows or "~/OpenCV" for Linux. In OpenCV v2.4.3, the
   prebuilt OpenCV library is in "C:\OpenCV\build" or "~/OpenCV/build", such as
   "C:\OpenCV\build\x64\vc9" for MS Visual Studio 2008 (or "vs10" folder for MS 
