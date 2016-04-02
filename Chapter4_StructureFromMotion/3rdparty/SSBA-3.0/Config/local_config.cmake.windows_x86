@@ -1,0 +1,105 @@
+###############################################################################
+# Set your paths, and enable the features you want to use.
+
+# Paths
+set (BIAS_DIR        "D:/Libraries/BIAS-2.6.1")
+set (CG_DIR          "C:/Program Files/NVIDIA Corporation/Cg")
+set (CUDA_DIR        "C:/CUDA")
+set (GL_DIR          "D:/Libraries/OpenGL")
+set (GLU_DIR         "D:/Libraries/OpenGL")
+set (GLEW_DIR        "D:/Libraries/OpenGL")
+set (IMDEBUG_DIR     "D:/Libraries/imdebug")
+set (JPEG_DIR        "D:/Libraries/JPEG")
+set (LAPACK_DIR      "D:/Libraries/LAPACK")
+set (MRF_DIR         "D:/Libraries/MRF2.1")
+set (OPENCV_DIR      "C:/Program Files/OpenCV")
+set (PNG_DIR         "D:/Libraries/PNG")
+set (SIFTGPU_DIR     "D:/Libraries/SiftGPU")
+set (SUITESPARSE_DIR "D:/Libraries/SuiteSparse")
+
+# Debug/release mode selection
+set (CMAKE_BUILD_TYPE Release)
+#set (CMAKE_BUILD_TYPE Debug)
+
+# Optional libraries
+#enable_feature (V3DLIB_ENABLE_FFMPEG)
+enable_feature (V3DLIB_ENABLE_GPGPU)
+enable_feature (V3DLIB_ENABLE_IMDEBUG)
+enable_feature (V3DLIB_ENABLE_CUDA)
+enable_feature (V3DLIB_ENABLE_LIBJPEG)
+enable_feature (V3DLIB_ENABLE_LIBPNG)
+enable_feature (V3DLIB_ENABLE_MRF)
+enable_feature (V3DLIB_ENABLE_OPENCV)
+enable_feature (V3DLIB_ENABLE_SIFTGPU)
+enable_feature (V3DLIB_ENABLE_SOCKETS)
+enable_feature (V3DLIB_ENABLE_SUITESPARSE)
+
+
+##############################################################################
+# You shouldn't have to change anything in this section.
+
+# Settings for compiling under Windows with VisualStudio.
+# Warning level
+add_definitions ("/W1")
+# NOMINMAX for compatibility with windows.h and STL
+add_definitions (-DNOMINMAX)
+
+# BIAS related dirs and settings. Note that BIAS is always required.
+enable_feature (V3DLIB_ENABLE_BIAS)
+enable_feature_inc_path (V3DLIB_ENABLE_BIAS ${BIAS_DIR})
+enable_feature_lib_path (V3DLIB_ENABLE_BIAS ${BIAS_DIR}/lib/${CMAKE_BUILD_TYPE} ${LAPACK_DIR})
+enable_feature_libraries (V3DLIB_ENABLE_BIAS BIASGeometry BIASGeometryBase BIASMathAlgo BIASMathBase BIASImagebase BIASDebug BIASCommon Lapack Blas)
+
+# Library paths
+# GPGPU
+enable_feature_inc_path (V3DLIB_ENABLE_GPGPU ${GL_DIR}/include ${GLU_DIR}/include ${GLEW_DIR}/include)
+enable_feature_lib_path (V3DLIB_ENABLE_GPGPU ${GL_DIR}/lib ${GLU_DIR}/lib ${GLEW_DIR}/lib)
+enable_feature_libraries (V3DLIB_ENABLE_GPGPU GLEW32 GLU32 OPENGL32)
+set (EXTRA_LIBS ${EXTRA_LIBS} glut32)
+# Cg
+enable_conditional_feature (V3DLIB_GPGPU_ENABLE_CG V3DLIB_ENABLE_GPGPU)
+enable_feature_inc_path (V3DLIB_GPGPU_ENABLE_CG ${CG_DIR}/include)
+enable_feature_lib_path (V3DLIB_GPGPU_ENABLE_CG ${CG_DIR}/lib)
+enable_feature_libraries (V3DLIB_GPGPU_ENABLE_CG Cg CgGL)
+# CUDA
+enable_feature_inc_path (V3DLIB_ENABLE_CUDA ${CUDA_DIR}/include)
+enable_feature_lib_path (V3DLIB_ENABLE_CUDA ${CUDA_DIR}/lib)
+enable_feature_libraries (V3DLIB_ENABLE_CUDA cublas cudart)
+set (OBJEXT obj)
+set (EXTRA_NVCC_ARGS -DWIN32 -D_CONSOLE -D_MBCS -Xcompiler /EHsc,/W3,/nologo,/Wp64,/O2,/Zi,/MD )
+# OpenCV
+enable_feature_inc_path (V3DLIB_ENABLE_OPENCV ${OPENCV_DIR}/cv/include ${OPENCV_DIR}/cxcore/include ${OPENCV_DIR}/otherlibs/highgui)
+enable_feature_lib_path (V3DLIB_ENABLE_OPENCV ${OPENCV_DIR}/lib)
+enable_feature_libraries (V3DLIB_ENABLE_OPENCV highgui cvaux cv cxcore)
+# ffmpeg
+enable_feature_libraries (V3DLIB_ENABLE_FFMPEG avcodec avformat avcodec avutil)
+# imdebug
+enable_feature_inc_path (V3DLIB_ENABLE_IMDEBUG ${IMDEBUG_DIR})
+enable_feature_lib_path (V3DLIB_ENABLE_IMDEBUG ${IMDEBUG_DIR})
+enable_feature_libraries (V3DLIB_ENABLE_IMDEBUG imdebug)
+# JPEG
+enable_feature_inc_path (V3DLIB_ENABLE_LIBJPEG ${JPEG_DIR})
+enable_feature_lib_path (V3DLIB_ENABLE_LIBJPEG ${JPEG_DIR})
+enable_feature_libraries (V3DLIB_ENABLE_LIBJPEG jpeglib)
+# PNG
+enable_feature_inc_path (V3DLIB_ENABLE_LIBPNG ${PNG_DIR}/include ${PNG_DIR})
+enable_feature_lib_path (V3DLIB_ENABLE_LIBPNG ${PNG_DIR}/lib ${PNG_DIR})
+enable_feature_libraries (V3DLIB_ENABLE_LIBPNG libpng)
+# MRF
+enable_feature_inc_path (V3DLIB_ENABLE_MRF ${MRF_DIR})
+enable_feature_lib_path (V3DLIB_ENABLE_MRF ${MRF_DIR})
+enable_feature_libraries (V3DLIB_ENABLE_MRF MRF)
+# SiftGPU
+enable_feature_inc_path (V3DLIB_ENABLE_SIFTGPU ${SIFTGPU_DIR}/SiftGPU/src)
+enable_feature_lib_path (V3DLIB_ENABLE_SIFTGPU ${SIFTGPU_DIR}/SiftGPU/bin)
+enable_feature_libraries (V3DLIB_ENABLE_SIFTGPU SiftGPU)
+# Sockets
+if (V3DLIB_ENABLE_SOCKETS)
+    set (EXTRA_LIBS ${EXTRA_LIBS} Ws2_32 )
+endif (V3DLIB_ENABLE_SOCKETS)
+# SuiteSparse
+enable_feature_inc_path (V3DLIB_ENABLE_SUITESPARSE ${SUITESPARSE_DIR}/COLAMD/Include ${SUITESPARSE_DIR}/UFconfig)
+enable_feature_lib_path (V3DLIB_ENABLE_SUITESPARSE ${SUITESPARSE_DIR})
+enable_feature_libraries (V3DLIB_ENABLE_SUITESPARSE SuiteSparse)
+##############################################################################
+
