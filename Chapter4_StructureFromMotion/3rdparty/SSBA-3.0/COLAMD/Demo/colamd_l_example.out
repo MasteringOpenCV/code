@@ -1,0 +1,50 @@
+colamd 5-by-4 input matrix:
+Column 0, with 3 entries:
+    row 0
+    row 1
+    row 4
+Column 1, with 2 entries:
+    row 2
+    row 4
+Column 2, with 4 entries:
+    row 0
+    row 1
+    row 2
+    row 3
+Column 3, with 2 entries:
+    row 1
+    row 3
+
+colamd version 2.8, Jun 1, 2012: OK.  
+colamd: number of dense or empty rows ignored:           0
+colamd: number of dense or empty columns ignored:        0
+colamd: number of garbage collections performed:         0
+colamd_l column ordering:
+1st column: 1
+2nd column: 0
+3rd column: 2
+4th column: 3
+
+
+symamd_l 5-by-5 input matrix:
+Entries in strictly lower triangular part:
+Column 0, with 1 entries:
+    row 1
+Column 1, with 2 entries:
+    row 2
+    row 3
+Column 2, with 0 entries:
+Column 3, with 1 entries:
+    row 4
+Column 4, with 0 entries:
+
+symamd version 2.8, Jun 1, 2012: OK.  
+symamd: number of dense or empty rows ignored:           0
+symamd: number of dense or empty columns ignored:        0
+symamd: number of garbage collections performed:         0
+symamd_l column ordering:
+1st row/column: 0
+2nd row/column: 2
+3rd row/column: 1
+4th row/column: 3
+5th row/column: 4

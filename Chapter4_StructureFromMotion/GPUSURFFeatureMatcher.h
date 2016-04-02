@@ -8,6 +8,7 @@
 
 #include "IFeatureMatcher.h"
 #include <opencv2/gpu/gpu.hpp>
+#include <opencv2/nonfree/gpu.hpp>
 
 class GPUSURFFeatureMatcher : public IFeatureMatcher {
 private:
