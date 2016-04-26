@@ -85,11 +85,33 @@ int main(int argc, const char * argv[])
         else 
         {
             cv::VideoCapture cap;
-            if (cap.open(input))
-            {
-                processVideo(patternImage, calibration, cap);
-            }
-        }
+			if (cap.open(input))
+			{
+				processVideo(patternImage, calibration, cap);
+			}
+			if (cap.open(input))
+			{
+				processVideo(patternImage, calibration, cap);
+			}
+			else
+			{
+				int deviceIndex;
+				try
+				{
+					deviceIndex = std::stoi(input);
+				}
+				catch (std::invalid_argument e)
+				{
+					std::cerr << "Can't parse device index \"" << input << "\" as an integer value!" << std::endl;
+					return 1;
+				}
+
+				if (cap.open(deviceIndex))
+				{
+					processVideo(patternImage, calibration, cap);
+				}
+			}
+		}
     }
     else
     {
