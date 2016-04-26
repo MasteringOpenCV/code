@@ -17,6 +17,15 @@
 
 ////////////////////////////////////////////////////////////////////
 // Standard includes:
+
+#ifdef _WIN64
+// Fix for the std::min and std::max
+#define NOMINMAX
+
+// On WIN64 it should be before gl.h
+#include <windows.h> 
+#endif
+
 #include <opencv2/opencv.hpp>
 #include <gl/gl.h>
 #include <gl/glu.h>
@@ -76,11 +85,33 @@ int main(int argc, const char * argv[])
         else 
         {
             cv::VideoCapture cap;
-            if (cap.open(input))
-            {
-                processVideo(patternImage, calibration, cap);
-            }
-        }
+			if (cap.open(input))
+			{
+				processVideo(patternImage, calibration, cap);
+			}
+			if (cap.open(input))
+			{
+				processVideo(patternImage, calibration, cap);
+			}
+			else
+			{
+				int deviceIndex;
+				try
+				{
+					deviceIndex = std::stoi(input);
+				}
+				catch (std::invalid_argument e)
+				{
+					std::cerr << "Can't parse device index \"" << input << "\" as an integer value!" << std::endl;
+					return 1;
+				}
+
+				if (cap.open(deviceIndex))
+				{
+					processVideo(patternImage, calibration, cap);
+				}
+			}
+		}
     }
     else
     {
