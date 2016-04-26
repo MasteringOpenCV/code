@@ -17,6 +17,15 @@
 
 ////////////////////////////////////////////////////////////////////
 // Standard includes:
+
+#ifdef _WIN64
+// Fix for the std::min and std::max
+#define NOMINMAX
+
+// On WIN64 it should be before gl.h
+#include <windows.h> 
+#endif
+
 #include <opencv2/opencv.hpp>
 #include <gl/gl.h>
 #include <gl/glu.h>

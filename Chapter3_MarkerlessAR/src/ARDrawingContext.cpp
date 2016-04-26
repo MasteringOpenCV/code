@@ -15,6 +15,12 @@
 
 ////////////////////////////////////////////////////////////////////
 // Standard includes:
+
+#ifdef _WIN64
+// On WIN64 it should be before gl.h
+#include <windows.h> 
+#endif
+
 #include <gl/gl.h>
 #include <gl/glu.h>
 
