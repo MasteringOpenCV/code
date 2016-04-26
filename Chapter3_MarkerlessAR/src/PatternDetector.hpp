@@ -31,7 +31,7 @@ public:
 		//cv::Ptr<cv::FeatureDetector>     detector = new cv::ORB(1000),
 		//cv::Ptr<cv::DescriptorExtractor> extractor = new cv::FREAK(false, false),
 		//cv::Ptr<cv::DescriptorMatcher>   matcher = new cv::BFMatcher(cv::NORM_HAMMING, true),
-		cv::Ptr<cv::FeatureDetector>     detector = cv::ORB::create(1000),
+		cv::Ptr<cv::FeatureDetector>     detector  = cv::ORB::create(1000),
 		cv::Ptr<cv::DescriptorExtractor> extractor = cv::ORB::create(1000),
 		cv::Ptr<cv::DescriptorMatcher>   matcher   = cv::DescriptorMatcher::create("BruteForce-Hamming"),
         bool enableRatioTest                       = false
