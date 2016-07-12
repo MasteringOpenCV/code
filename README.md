@@ -1,12 +1,12 @@
 ==============================================================================
-Mastering OpenCV with Practical Computer Vision Projects
+Mastering OpenCV with Practical Computer Vision Projects, 2nd Edition
 ==============================================================================
 Full source-code for the book.
 --------------------------------------------------------------------------------
 
     Source-Code:    https://github.com/MasteringOpenCV/code
     Book:           http://www.packtpub.com/cool-projects-with-opencv/book
-    Copyright:      Packt Publishing 2012.
+    Copyright:      Packt Publishing 2016.
 
 
 --------------------------------------------------------------------------------
@@ -35,14 +35,14 @@ can be used with many compilers and many operating systems.
 --------------------------------------------------------------------------------
 Chapters:
 --------------------------------------------------------------------------------
-- Ch1) Cartoonifier and Skin Changer for Android, by Shervin Emami.
+- Ch1) Cartoonifier and Skin Changer for Raspberry Pi, by Shervin Emami.
 - Ch2) Marker-based Augmented Reality on iPhone or iPad, by Khvedchenia Ievgen.
 - Ch3) Marker-less Augmented Reality, by Khvedchenia Ievgen.
 - Ch4) Exploring Structure from Motion using OpenCV, by Roy Shilkrot.
 - Ch5) Number Plate Recognition using SVM and Neural Networks, by David Escrivá.
 - Ch6) Non-rigid Face Tracking, by Jason Saragih.
 - Ch7) 3D Head Pose Estimation using AAM and POSIT, by Daniel Lélis Baggio.
-- Ch8) Face Recognition using Eigenfaces or Fisherfaces, by Shervin Emami.
+- Ch8) Face Recognition using Deep Learning, by Shervin Emami.
 - Ch9) Developing Fluid Wall using the Microsoft Kinect, by Naureen Mahmood.
 
 
@@ -77,7 +77,7 @@ on Windows, Mac or Linux). Some chapters have further requirements, particularly
   operations and eigen decomposition.
 
 Per-chapter Requirements:
-- Ch1: webcam (for desktop app), or Android development system (for Android app).
+- Ch1: webcam (for desktop app), or Raspberry Pi develepment board (for embedded app).
 - Ch2: iOS development system (to build an iOS app).
 - Ch3: OpenGL built into OpenCV.
 - Ch4: PCL (http://pointclouds.org/) and SSBA (http://www.inf.ethz.ch/personal/chzach/opensource.html).
@@ -91,8 +91,8 @@ Per-chapter Requirements:
 --------------------------------------------------------------------------------
 Screenshots:
 --------------------------------------------------------------------------------
-- Ch1) Cartoonifier and Skin Changer for Android:
-![Ch1) Cartoonifier and Skin Changer for Android](https://raw.github.com/MasteringOpenCV/code/master/Chapter1_AndroidCartoonifier/screenshot.png)
+- Ch1) Cartoonifier and Skin Changer for Raspberry Pi:
+![Ch1) Cartoonifier and Skin Changer for Raspberry Pi](https://raw.github.com/MasteringOpenCV/code/master/Chapter1_EmbeddedCartoonifier/screenshot.png)
 - Ch2) Marker-based Augmented Reality on iPhone or iPad:
 ![Ch2) Marker-based Augmented Reality on iPhone or iPad](https://raw.github.com/MasteringOpenCV/code/master/Chapter2_iPhoneAR/screenshot.png)
 - Ch3) Marker-less Augmented Reality:
@@ -105,8 +105,8 @@ Screenshots:
 ![Ch6) Non-rigid Face Tracking](https://raw.github.com/MasteringOpenCV/code/master/Chapter6_NonRigidFaceTracking/screenshot.png)
 - Ch7) 3D Head Pose Estimation using AAM and POSIT:
 ![Ch7) 3D Head Pose Estimation using AAM and POSIT](https://raw.github.com/MasteringOpenCV/code/master/Chapter7_HeadPoseEstimation/screenshot.png)
-- Ch8) Face Recognition using Eigenfaces or Fisherfaces:
-![Ch8) Face Recognition using Eigenfaces or Fisherfaces](https://raw.github.com/MasteringOpenCV/code/master/Chapter8_FaceRecognition/screenshot.png)
+- Ch8) Face Recognition using Deep Learning:
+![Ch8) Face Recognition using Deep Learning](https://raw.github.com/MasteringOpenCV/code/master/Chapter8_FaceRecognition/screenshot.png)
 - Ch9) Developing Fluid Wall using the Microsoft Kinect:
 ![Ch9) Developing Fluid Wall using the Microsoft Kinect](https://raw.github.com/MasteringOpenCV/code/master/Chapter9_FluidInteractionUsingKinect/screenshot.png)
 
