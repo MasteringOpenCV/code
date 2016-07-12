@@ -53,11 +53,11 @@
     #else
         // For stdout debug logging, with a new-line character on the end:
         #ifndef _MSC_VER
-            // Compiles on GCC but not MSVC:
-            #define LOG(fmt, args...) do {printf(fmt, ## args); printf("\n"); fflush(stdout);} while (0)
-    //        #define LOG printf
+            // Compiles on GCC but maybe not MSVC:
+            //#define LOG(fmt, args...) do {printf(fmt, ## args); printf("\n"); fflush(stdout);} while (0)
+            #define LOG(...)   do {} while (0)
         #else
-            #define LOG printf
+            #define LOG(...)   do {} while (0)
         #endif
     #endif
 #endif
