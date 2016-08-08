@@ -6,16 +6,18 @@
 *   by Shervin Emami, 5th Dec 2012 (shervin.emami@gmail.com)
 *   http://www.shervinemami.info/
 ******************************************************************************
-*   Ch1 of the book "Mastering OpenCV with Practical Computer Vision Projects"
-*   Copyright Packt Publishing 2012.
+*   Ch1 of the book "Mastering OpenCV with Practical Computer Vision Projects", 2nd Edition.
+*   Copyright Packt Publishing 2016.
 *   http://www.packtpub.com/cool-projects-with-opencv/book
 *****************************************************************************/
 
 
 // Try to set the camera resolution. Note that this only works for some cameras on
 // some computers and only for some drivers, so don't rely on it to work!
-const int DESIRED_CAMERA_WIDTH = 640;
-const int DESIRED_CAMERA_HEIGHT = 480;
+const int DEFAULT_CAMERA_WIDTH = 640;
+const int DEFAULT_CAMERA_HEIGHT = 480;
+
+const int DEFAULT_CAMERA_NUMBER = 0;
 
 const int NUM_STICK_FIGURE_ITERATIONS = 40; // Sets how long the stick figure face should be shown for skin detection.
 
@@ -101,9 +103,11 @@ void onKeypress(char key)
 
 int main(int argc, char *argv[])
 {
-    cout << "Cartoonifier, by Shervin Emami (www.shervinemami.info), June 2012." << endl;
+    cout << "Cartoonifier, by Shervin Emami (www.shervinemami.info), June 2016." << endl;
     cout << "Converts real-life images to cartoon-like images." << endl;
     cout << "Compiled with OpenCV version " << CV_VERSION << endl;
+    cout << "usage:   " << argv[0] << " [[camera_number] desired_width desired_height ]" << endl;
+    cout << "default: " << argv[0] << " " << DEFAULT_CAMERA_NUMBER << " " << DEFAULT_CAMERA_WIDTH << " " << DEFAULT_CAMERA_HEIGHT << endl;
     cout << endl;
 
     cout << "Keyboard commands (press in the GUI window):" << endl;
@@ -114,10 +118,26 @@ int main(int argc, char *argv[])
     cout << "    d:    change debug mode." << endl;
     cout << endl;
 
+    int cameraNumber = DEFAULT_CAMERA_NUMBER;
+    int desiredCameraWidth = DEFAULT_CAMERA_WIDTH;
+    int desiredCameraHeight = DEFAULT_CAMERA_HEIGHT;
+
     // Allow the user to specify a camera number, since not all computers will be the same camera number.
-    int cameraNumber = 0;   // Change this if you want to use a different camera device.
-    if (argc > 1) {
-        cameraNumber = atoi(argv[1]);
+    int a = 1;
+    if (argc > a) {
+        cameraNumber = atoi(argv[a]);
+        a++;    // Next arg
+
+        // Allow the user to specify camera resolution.
+        if (argc > a) {
+            desiredCameraWidth = atoi(argv[a]);
+            a++;    // Next arg
+
+            if (argc > a) {
+                desiredCameraHeight = atoi(argv[a]);
+                a++;    // Next arg
+            }
+        }
     }
 
     // Get access to the camera.
@@ -126,8 +146,8 @@ int main(int argc, char *argv[])
 
     // Try to set the camera resolution. Note that this only works for some cameras on
     // some computers and only for some drivers, so don't rely on it to work!
-    camera.set(CV_CAP_PROP_FRAME_WIDTH, DESIRED_CAMERA_WIDTH);
-    camera.set(CV_CAP_PROP_FRAME_HEIGHT, DESIRED_CAMERA_HEIGHT);
+    camera.set(CV_CAP_PROP_FRAME_WIDTH, desiredCameraWidth);
+    camera.set(CV_CAP_PROP_FRAME_HEIGHT, desiredCameraHeight);
 
     // Create a GUI window for display on the screen.
     namedWindow(windowName); // Resizable window, might not work on Windows.
