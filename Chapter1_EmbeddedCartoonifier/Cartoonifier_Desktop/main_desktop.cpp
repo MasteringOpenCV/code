@@ -45,6 +45,7 @@ bool m_debugMode = false;
 //#include "detectObject.h"       // Easily detect faces or eyes (using LBP or Haar Cascades).
 #include "cartoon.h"            // Cartoonify a photo.
 #include "ImageUtils.h"      // Shervin's handy OpenCV utility functions.
+#include "fps_timer.hpp"          // FPS timer by Jason Saragih.
 
 using namespace cv;
 using namespace std;
@@ -152,6 +153,9 @@ int main(int argc, char *argv[])
     // Create a GUI window for display on the screen.
     namedWindow(windowName); // Resizable window, might not work on Windows.
 
+    // Keep track of the recent FPS status.
+    fps_timer timer;
+
     // Run forever, until the user hits Escape to "break" out of this loop.
     while (true) {
 
@@ -177,6 +181,17 @@ int main(int argc, char *argv[])
         if (m_stickFigureIterations > 0) {
             drawFaceStickFigure(displayedFrame);
             m_stickFigureIterations--;
+        }
+
+        // Show the current FPS, displayed to the text console
+        timer.increment();
+        if (timer.fnum == 0) {
+            double fps;
+            if (timer.fps < 1.0f)
+                fps = timer.fps;                // FPS is a fraction
+            else
+                fps = (int)(timer.fps + 0.5f);  // FPS is a large number
+            cout << fps << " FPS" << endl;
         }
 
         imshow(windowName, displayedFrame);
