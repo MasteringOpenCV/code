@@ -3,11 +3,11 @@
 *   Handy utility functions for dealing with images in OpenCV (desktop or Android).
 *   The most recent version of this will always be available from "http://shervinemami.info/openCV.html"
 ******************************************************************************
-*   by Shervin Emami, 5th Dec 2012 (shervin.emami@gmail.com)
+*   by Shervin Emami, 8th Aug 2016 (shervin.emami@gmail.com)
 *   http://www.shervinemami.info/
 ******************************************************************************
-*   Ch1 of the book "Mastering OpenCV with Practical Computer Vision Projects"
-*   Copyright Packt Publishing 2012.
+*   Ch1 of the book "Mastering OpenCV with Practical Computer Vision Projects", 2nd Edition.
+*   Copyright Packt Publishing 2016.
 *   http://www.packtpub.com/cool-projects-with-opencv/book
 *****************************************************************************/
 
