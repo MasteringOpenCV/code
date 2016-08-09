@@ -1,7 +1,7 @@
 /*****************************************************************************
-*   Cartoonifier_Desktop.cpp, for Desktop.
+*   Cartoonifier.cpp: Main GUI for the Cartoonifier application.
 *   Converts a real-life camera stream to look like a cartoon.
-*   This file is for a desktop executable, but the cartoonifier can also be used in an Android / iOS project.
+*   This file is for a desktop or embedded Linux executable.
 ******************************************************************************
 *   by Shervin Emami, 5th Dec 2012 (shervin.emami@gmail.com)
 *   http://www.shervinemami.info/

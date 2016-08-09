@@ -10,21 +10,23 @@
 *   http://www.packtpub.com/cool-projects-with-opencv/book
 ******************************************************************************
 
-This folder contains 2 Cartoonifier projects, performing the same task:
-"Cartoonifier_Desktop": A desktop program (works on Windows, Mac, Linux, etc).
-"Cartoonifier_Embedded": An embedded program (works on Raspberry Pi 1 or higher).
+This folder contains the Cartoonifier project, that can be used on desktop
+(works on Windows, Mac, Linux, etc) or embedded (works on Raspberry Pi, etc).
 
-Each project has code for its user interface and the project files in its own folder:
-
-"Cartoonifier_Desktop" just uses the file "main_desktop.cpp" for its OpenCV user interface on a desktop.
-It includes a CMake project file to allow building with different compilers & versions for Windows, Mac, Linux, etc.
+The file "main.cpp" is for the OpenCV user interface and "cartoon.cpp" is for
+the image processing.
+It includes a CMake project file to allow building with different compilers &
+versions for Windows, Mac, Linux, etc.
 
 
 ----------------------------------------------------------
-Building the Cartoonifier_Desktop project using CMake from the command-line:
-(From the "Cartoonifier_Desktop" folder):
+Building the Cartoonifier project using CMake from the command-line:
+(From the "Cartoonifier" folder):
 ----------------------------------------------------------
-Linux:
+Embedded (Raspberry Pi, etc):
+    Follow the steps recommended in Chapter 1 of the book.
+
+Desktop Linux:
     export OpenCV_DIR="~/OpenCV/build"
     mkdir build
     cd build
@@ -36,25 +38,19 @@ MacOSX (Xcode):
     mkdir build
     cd build
     cmake -G Xcode -D OpenCV_DIR=$OpenCV_DIR ..
-    open Cartoonifier_Desktop.xcodeproj
+    open Cartoonifier.xcodeproj
 
 Windows (MS Visual Studio):
     set OpenCV_DIR="C:\OpenCV\build"
     mkdir build
     cd build
     cmake -G "Visual Studio 9 2008" -D OpenCV_DIR=%OpenCV_DIR% ..
-    start Cartoonifier_Desktop.sln 
+    start Cartoonifier.sln 
 
     
 ----------------------------------------------------------
 Running the project:
-(From the "Cartoonifier_Desktop" folder):
+(From the "Cartoonifier" folder):
 ----------------------------------------------------------
-Just execute "Cartoonifier_Desktop".
-
-
-----------------------------------------------------------
-Building & Running the Cartoonifier_Embedded project:
-----------------------------------------------------------
-Follow the steps recommended in Chapter 1 of the book.
+Just execute "Cartoonifier", such as "./Cartoonifier" in Linux.
 
