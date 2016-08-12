@@ -17,7 +17,7 @@
 const int DEFAULT_CAMERA_WIDTH = 640;
 const int DEFAULT_CAMERA_HEIGHT = 480;
 
-const int DEFAULT_CAMERA_NUMBER = 0;
+const char * DEFAULT_CAMERA_NUMBER = "0";
 
 const int NUM_STICK_FIGURE_ITERATIONS = 40; // Sets how long the stick figure face should be shown for skin detection.
 
@@ -37,6 +37,7 @@ bool m_debugMode = false;
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <ctype.h>           // For isdigit()
 
 // Include OpenCV's C++ Interface
 #include "opencv2/opencv.hpp"
@@ -58,18 +59,29 @@ int m_stickFigureIterations = 0;  // Draws a stick figure outline for where the 
 
 
 
-// Get access to the webcam.
-void initWebcam(VideoCapture &videoCapture, int cameraNumber)
+// Get access to the webcam or video source. cameraNumber should be a number
+// (eg: "0" or "1") but can also be a video file or stream URL.
+void initCamera(VideoCapture &videoCapture, char* cameraNumber)
 {
-    // Get access to the default camera.
+    // First try to access to the camera as a camera number such as 0
     try {   // Surround the OpenCV call by a try/catch block so we can give a useful error message!
-        videoCapture.open(cameraNumber);
+        if ( isdigit(cameraNumber[0]) ) {
+            videoCapture.open(atoi(cameraNumber));
+        }
     } catch (cv::Exception &e) {}
+
     if ( !videoCapture.isOpened() ) {
-        cerr << "ERROR: Could not access the camera!" << endl;
-        exit(1);
+        // Also try to access to the camera as a video file or URL.
+        try {   // Surround the OpenCV call by a try/catch block so we can give a useful error message!
+            videoCapture.open(cameraNumber);
+        } catch (cv::Exception &e) {}
+
+        if ( !videoCapture.isOpened() ) {
+            cerr << "ERROR: Could not access the camera " << cameraNumber << " !" << endl;
+            exit(1);
+        }
     }
-    cout << "Loaded camera " << cameraNumber << "." << endl;
+    cout << "Loaded camera " << cameraNumber << endl;
 }
 
 
@@ -119,14 +131,14 @@ int main(int argc, char *argv[])
     cout << "    d:    change debug mode." << endl;
     cout << endl;
 
-    int cameraNumber = DEFAULT_CAMERA_NUMBER;
+    char *cameraNumber = (char*)DEFAULT_CAMERA_NUMBER;
     int desiredCameraWidth = DEFAULT_CAMERA_WIDTH;
     int desiredCameraHeight = DEFAULT_CAMERA_HEIGHT;
 
     // Allow the user to specify a camera number, since not all computers will be the same camera number.
     int a = 1;
     if (argc > a) {
-        cameraNumber = atoi(argv[a]);
+        cameraNumber = argv[a];
         a++;    // Next arg
 
         // Allow the user to specify camera resolution.
@@ -143,7 +155,7 @@ int main(int argc, char *argv[])
 
     // Get access to the camera.
     VideoCapture camera;
-    initWebcam(camera, cameraNumber);
+    initCamera(camera, cameraNumber);
 
     // Try to set the camera resolution. Note that this only works for some cameras on
     // some computers and only for some drivers, so don't rely on it to work!
