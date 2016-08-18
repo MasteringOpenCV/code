@@ -163,7 +163,9 @@ int main(int argc, char *argv[])
     camera.set(CV_CAP_PROP_FRAME_HEIGHT, desiredCameraHeight);
 
     // Create a GUI window for display on the screen.
-    namedWindow(windowName); // Resizable window, might not work on Windows.
+    namedWindow(windowName, WINDOW_NORMAL); // Fullscreen windows must be _NORMAL
+    // Make our window fullscreen.
+    setWindowProperty(windowName, WND_PROP_FULLSCREEN, CV_WINDOW_FULLSCREEN);
 
     // Keep track of the recent FPS status.
     fps_timer timer;
