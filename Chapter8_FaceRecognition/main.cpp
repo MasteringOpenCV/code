@@ -1,17 +1,17 @@
 /*****************************************************************************
-*   Face Recognition using Eigenfaces or Fisherfaces
-******************************************************************************
-*   by Shervin Emami, 5th Dec 2012
-*   http://www.shervinemami.info/openCV.html
-******************************************************************************
-*   Ch8 of the book "Mastering OpenCV with Practical Computer Vision Projects"
-*   Copyright Packt Publishing 2012.
-*   http://www.packtpub.com/cool-projects-with-opencv/book
-*****************************************************************************/
+ * *   Face Recognition using Eigenfaces or Fisherfaces
+ * ******************************************************************************
+ * *   by Shervin Emami, 8th Dec 2016
+ * *   http://www.shervinemami.info/openCV.html
+ * ******************************************************************************
+ * *   Ch8 of 2nd Edition of the book "Mastering OpenCV with Practical Computer Vision Projects"
+ * *   Copyright Packt Publishing 2016.
+ * *   http://www.packtpub.com/cool-projects-with-opencv/book
+ * *****************************************************************************/
 
 //////////////////////////////////////////////////////////////////////////////////////
-// WebcamFaceRec.cpp, by Shervin Emami (www.shervinemami.info) on 30th May 2012.
-// Face Detection & Face Recognition from a webcam using LBP and Eigenfaces or Fisherfaces.
+// WebcamFaceRec.cpp, by Shervin Emami (www.shervinemami.info) on 8th Dec 2016.
+// Face Detection & Face Recognition from a webcam using Eigenfaces or Fisherfaces.
 //////////////////////////////////////////////////////////////////////////////////////
 //
 // Some parts are based on the tutorial & code by Robin Hewitt (2007) at:
@@ -20,17 +20,18 @@
 // Some parts are based on the tutorial & code by Shervin Emami (2009) at:
 // "http://www.shervinemami.info/faceRecognition.html"
 //
-// Requires OpenCV v2.4.1 or later (from June 2012), otherwise the FaceRecognizer will not compile or run.
+// Requires OpenCV v3.0 or later (2015), otherwise the FaceRecognizer will not compile or run!
+// If you need to use OpenCV v2.4 or LBPH, use the 1st Edition of the book.
 //
 //////////////////////////////////////////////////////////////////////////////////////
 
 
-// The Face Recognition algorithm can be one of these and perhaps more, depending on your version of OpenCV, which must be atleast v2.4.1:
+// The Face Recognition algorithm can be one of these and perhaps more, depending on your version of OpenCV, which must be atleast v3.0.0:
 //    "FaceRecognizer.Eigenfaces":  Eigenfaces, also referred to as PCA (Turk and Pentland, 1991).
 //    "FaceRecognizer.Fisherfaces": Fisherfaces, also referred to as LDA (Belhumeur et al, 1997).
-//    "FaceRecognizer.LBPH":        Local Binary Pattern Histograms (Ahonen et al, 2006).
-const char *facerecAlgorithm = "FaceRecognizer.Fisherfaces";
-//const char *facerecAlgorithm = "FaceRecognizer.Eigenfaces";
+//    Note: The LBPH algorithm was also available using the 1st Edition of Mastering OpenCV (with OpenCV 2.4)
+//const char *facerecAlgorithm = "FaceRecognizer.Fisherfaces";
+const char *facerecAlgorithm = "FaceRecognizer.Eigenfaces";
 
 
 // Sets how confident the Face Verification algorithm should be to decide if it is an unknown person or a known person.
@@ -320,7 +321,7 @@ void onMouse(int event, int x, int y, int, void*)
 // Main loop that runs forever, until the user hits Escape to quit.
 void recognizeAndTrainUsingWebcam(VideoCapture &videoCapture, CascadeClassifier &faceCascade, CascadeClassifier &eyeCascade1, CascadeClassifier &eyeCascade2)
 {
-    Ptr<FaceRecognizer> model;
+    Ptr<BasicFaceRecognizer> model;
     vector<Mat> preprocessedFaces;
     vector<int> faceLabels;
     Mat old_prepreprocessedFace;
@@ -634,7 +635,7 @@ int main(int argc, char *argv[])
     CascadeClassifier eyeCascade2;
     VideoCapture videoCapture;
 
-    cout << "WebcamFaceRec, by Shervin Emami (www.shervinemami.info), June 2012." << endl;
+    cout << "WebcamFaceRec, by Shervin Emami (www.shervinemami.info), Dec 2016." << endl;
     cout << "Realtime face detection + face recognition from a webcam using LBP and Eigenfaces or Fisherfaces." << endl;
     cout << "Compiled with OpenCV version " << CV_VERSION << endl << endl;
 
