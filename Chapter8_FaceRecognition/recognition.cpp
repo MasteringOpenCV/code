@@ -1,19 +1,20 @@
 /*****************************************************************************
 *   Face Recognition using Eigenfaces or Fisherfaces
 ******************************************************************************
-*   by Shervin Emami, 5th Dec 2012
+*   by Shervin Emami, 8th Dec 2016
 *   http://www.shervinemami.info/openCV.html
 ******************************************************************************
-*   Ch8 of the book "Mastering OpenCV with Practical Computer Vision Projects"
-*   Copyright Packt Publishing 2012.
+*   Ch8 of 2nd Edition of the book "Mastering OpenCV with Practical Computer Vision Projects"
+*   Copyright Packt Publishing 2016.
 *   http://www.packtpub.com/cool-projects-with-opencv/book
 *****************************************************************************/
 
 //////////////////////////////////////////////////////////////////////////////////////
-// recognition.cpp, by Shervin Emami (www.shervinemami.info) on 30th May 2012.
+// recognition.cpp, by Shervin Emami (www.shervinemami.info) on 8th Dec 2016.
 // Train the face recognition system on a given dataset, and recognize the person from a given image.
 //////////////////////////////////////////////////////////////////////////////////////
-// Requires OpenCV v2.4.1 or later (from June 2012), otherwise the FaceRecognizer will not compile or run!
+// Requires OpenCV v3.0 or later (2015), otherwise the FaceRecognizer will not compile or run!
+// If you need to use OpenCV v2.4 or LBPH, use the 1st Edition of the book.
 //////////////////////////////////////////////////////////////////////////////////////
 
 
@@ -22,29 +23,35 @@
 #include "ImageUtils.h"      // Shervin's handy OpenCV utility functions.
 
 // Start training from the collected faces.
-// The face recognition algorithm can be one of these and perhaps more, depending on your version of OpenCV, which must be atleast v2.4.1:
+// The face recognition algorithm can be one of these and perhaps more, depending on your version of OpenCV, which must be atleast v3.0.0:
 //    "FaceRecognizer.Eigenfaces":  Eigenfaces, also referred to as PCA (Turk and Pentland, 1991).
 //    "FaceRecognizer.Fisherfaces": Fisherfaces, also referred to as LDA (Belhumeur et al, 1997).
-//    "FaceRecognizer.LBPH":        Local Binary Pattern Histograms (Ahonen et al, 2006).
-Ptr<FaceRecognizer> learnCollectedFaces(const vector<Mat> preprocessedFaces, const vector<int> faceLabels, const string facerecAlgorithm)
+// Note: The LBPH algorithm was also available using the 1st Edition of Mastering OpenCV (with OpenCV 2.4)
+Ptr<BasicFaceRecognizer> learnCollectedFaces(const vector<Mat> preprocessedFaces, const vector<int> faceLabels, const string facerecAlgorithm)
 {
-    Ptr<FaceRecognizer> model;
+    Ptr<BasicFaceRecognizer> model;
 
     cout << "Learning the collected faces using the [" << facerecAlgorithm << "] algorithm ..." << endl;
 
-    // Make sure the "contrib" module is dynamically loaded at runtime.
+    /*// Make sure the "contrib" module is dynamically loaded at runtime.
     // Requires OpenCV v2.4.1 or later (from June 2012), otherwise the FaceRecognizer will not compile or run!
     bool haveContribModule = initModule_contrib();
     if (!haveContribModule) {
         cerr << "ERROR: The 'contrib' module is needed for FaceRecognizer but has not been loaded into OpenCV!" << endl;
         exit(1);
     }
+    */
 
-    // Use the new FaceRecognizer class in OpenCV's "contrib" module:
-    // Requires OpenCV v2.4.1 or later (from June 2012), otherwise the FaceRecognizer will not compile or run!
-    model = Algorithm::create<FaceRecognizer>(facerecAlgorithm);
+    // Use the new FaceRecognizer class in the "contrib" module of OpenCV 3:
+    if (facerecAlgorithm.compare("FaceRecognizer.Eigenfaces") == 0)
+        model = createEigenFaceRecognizer();
+    else if (facerecAlgorithm.compare("FaceRecognizer.Fisherfaces") == 0)
+        model = createFisherFaceRecognizer();
+    //else if (facerecAlgorithm.compare("FaceRecognizer.LBPH") == 0)
+        //model = createLBPHFaceRecognizer();
+
     if (model.empty()) {
-        cerr << "ERROR: The FaceRecognizer algorithm [" << facerecAlgorithm << "] is not available in your version of OpenCV. Please update to OpenCV v2.4.1 or newer." << endl;
+        cerr << "ERROR: The FaceRecognizer algorithm [" << facerecAlgorithm << "] is not available in your version of OpenCV. Please make sure the 'contrib' module is built into your OpenCV library." << endl;
         exit(1);
     }
 
@@ -67,12 +74,12 @@ Mat getImageFrom1DFloatMat(const Mat matrixRow, int height)
 }
 
 // Show the internal face recognition data, to help debugging.
-void showTrainingDebugData(const Ptr<FaceRecognizer> model, const int faceWidth, const int faceHeight)
+void showTrainingDebugData(const Ptr<BasicFaceRecognizer> model, const int faceWidth, const int faceHeight)
 {
     try {   // Surround the OpenCV calls by a try/catch block so we don't crash if some model parameters aren't available.
 
         // Show the average face (statistical average for each pixel in the collected images).
-        Mat averageFaceRow = model->get<Mat>("mean");
+        Mat averageFaceRow = model->getMean();
         printMatInfo(averageFaceRow, "averageFaceRow");
         // Convert the matrix row (1D float matrix) to a regular 8-bit image.
         Mat averageFace = getImageFrom1DFloatMat(averageFaceRow, faceHeight);
@@ -80,7 +87,7 @@ void showTrainingDebugData(const Ptr<FaceRecognizer> model, const int faceWidth,
         imshow("averageFace", averageFace);
 
         // Get the eigenvectors
-        Mat eigenvectors = model->get<Mat>("eigenvectors");
+        Mat eigenvectors = model->getEigenVectors();
         printMatInfo(eigenvectors, "eigenvectors");
 
         // Show the best 20 eigenfaces
@@ -97,13 +104,13 @@ void showTrainingDebugData(const Ptr<FaceRecognizer> model, const int faceWidth,
         }
 
         // Get the eigenvalues
-        Mat eigenvalues = model->get<Mat>("eigenvalues");
+        Mat eigenvalues = model->getEigenValues();
         printMat(eigenvalues, "eigenvalues");
 
         //int ncomponents = model->get<int>("ncomponents");
         //cout << "ncomponents = " << ncomponents << endl;
 
-        vector<Mat> projections = model->get<vector<Mat> >("projections");
+        vector<Mat> projections = model->getProjections();
         cout << "projections: " << projections.size() << endl;
         for (int i = 0; i < (int)projections.size(); i++) {
             printMat(projections[i], "projections");
@@ -120,24 +127,24 @@ void showTrainingDebugData(const Ptr<FaceRecognizer> model, const int faceWidth,
 
 
 // Generate an approximately reconstructed face by back-projecting the eigenvectors & eigenvalues of the given (preprocessed) face.
-Mat reconstructFace(const Ptr<FaceRecognizer> model, const Mat preprocessedFace)
+Mat reconstructFace(const Ptr<BasicFaceRecognizer> model, const Mat preprocessedFace)
 {
     // Since we can only reconstruct the face for some types of FaceRecognizer models (ie: Eigenfaces or Fisherfaces),
     // we should surround the OpenCV calls by a try/catch block so we don't crash for other models.
     try {
 
         // Get some required data from the FaceRecognizer model.
-        Mat eigenvectors = model->get<Mat>("eigenvectors");
-        Mat averageFaceRow = model->get<Mat>("mean");
+        Mat eigenvectors = model->getEigenVectors();
+        Mat averageFaceRow = model->getMean();
 
         int faceHeight = preprocessedFace.rows;
 
         // Project the input image onto the PCA subspace.
-        Mat projection = subspaceProject(eigenvectors, averageFaceRow, preprocessedFace.reshape(1,1));
+        Mat projection = LDA::subspaceProject(eigenvectors, averageFaceRow, preprocessedFace.reshape(1,1));
         //printMatInfo(projection, "projection");
 
         // Generate the reconstructed face back from the PCA subspace.
-        Mat reconstructionRow = subspaceReconstruct(eigenvectors, averageFaceRow, projection);
+        Mat reconstructionRow = LDA::subspaceReconstruct(eigenvectors, averageFaceRow, projection);
         //printMatInfo(reconstructionRow, "reconstructionRow");
 
         // Convert the float row matrix to a regular 8-bit image. Note that we
