@@ -4,7 +4,7 @@ Mastering OpenCV with Practical Computer Vision Projects, 2nd Edition
 Full source-code for the book.
 --------------------------------------------------------------------------------
 
-    Source-Code:    https://github.com/MasteringOpenCV/code/Ed2_OpenCV31
+    Source-Code:    https://github.com/MasteringOpenCV/code
     Book:           http://www.packtpub.com/cool-projects-with-opencv/book
     Copyright:      Packt Publishing 2016.
 
