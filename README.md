@@ -4,7 +4,7 @@ Mastering OpenCV with Practical Computer Vision Projects, 2nd Edition
 Full source-code for the book.
 --------------------------------------------------------------------------------
 
-    Source-Code:    https://github.com/MasteringOpenCV/code
+    Source-Code:    https://github.com/MasteringOpenCV/code/Ed2_OpenCV31
     Book:           http://www.packtpub.com/cool-projects-with-opencv/book
     Copyright:      Packt Publishing 2016.
 
@@ -12,9 +12,9 @@ Full source-code for the book.
 --------------------------------------------------------------------------------
 To build & run the projects for the book:
 --------------------------------------------------------------------------------
-- Install OpenCV (versions between 2.4.2 to 2.4.11 are supported, whereas OpenCV 3.0 is not yet supported). eg: go to "http://opencv.org/", click on
-  Downloads, download the latest OpenCV 2.4 version (including prebuilt library), and extract
-  it to "C:\OpenCV" for Windows or "~/OpenCV" for Linux. In OpenCV v2.4.3, the
+- Install OpenCV (version 3.1.0 is recommended, whereas OpenCV 2 is only supported in the 1st edition of this book). eg: go to "http://opencv.org/", click on
+  Downloads, download the latest OpenCV 3.1 version (including prebuilt library), and extract
+  it to "C:\OpenCV" for Windows or "~/OpenCV" for Linux. In OpenCV v3.1.0, the
   prebuilt OpenCV library is in "C:\OpenCV\build" or "~/OpenCV/build", such as
   "C:\OpenCV\build\x64\vc9" for MS Visual Studio 2008 (or "vs10" folder for MS 
   Visual Studio 2010, or the "x86" parent folder for 32-bit Windows).
@@ -42,7 +42,7 @@ Chapters:
 - Ch5) Number Plate Recognition using SVM and Neural Networks, by David Escrivá.
 - Ch6) Non-rigid Face Tracking, by Jason Saragih.
 - Ch7) 3D Head Pose Estimation using AAM and POSIT, by Daniel Lélis Baggio.
-- Ch8) Face Recognition using Deep Learning, by Shervin Emami.
+- Ch8) Face Recognition using Eigenfaces or Fisherfaces, by Shervin Emami.
 - Ch9) Developing Fluid Wall using the Microsoft Kinect, by Naureen Mahmood.
 
 
@@ -62,8 +62,8 @@ In addition to C/C++ and OpenCV experience, you will also need a computer, and a
 IDE of your choice (such as Visual Studio, XCode, Eclipse, or QtCreator, running
 on Windows, Mac or Linux). Some chapters have further requirements, particularly:
 
-- To develop the Android app, you will need an Android device, Android
-  development tools, and basic Android development experience.
+- To develop the Raspberry Pi application, you will need an embedded Linux device,
+  such as a Raspberry Pi, BeagleBone, ODROID, OlinuXino or Jetson dev board.
 - To develop the iOS app, you will need an iPhone, iPad, or iPod Touch device,
   iOS development tools (including an Apple computer, XCode IDE, and an Apple
   Developer Certificate), and basic iOS and Objective-C development experience.
@@ -92,7 +92,7 @@ Per-chapter Requirements:
 Screenshots:
 --------------------------------------------------------------------------------
 - Ch1) Cartoonifier and Skin Changer for Raspberry Pi:
-![Ch1) Cartoonifier and Skin Changer for Raspberry Pi](https://raw.github.com/MasteringOpenCV/code/master/Chapter1_EmbeddedCartoonifier/screenshot.png)
+![Ch1) Cartoonifier and Skin Changer for Raspberry Pi](https://raw.github.com/MasteringOpenCV/code/Ed2_OpenCV31/Chapter1_EmbeddedCartoonifier/screenshot.png)
 - Ch2) Marker-based Augmented Reality on iPhone or iPad:
 ![Ch2) Marker-based Augmented Reality on iPhone or iPad](https://raw.github.com/MasteringOpenCV/code/master/Chapter2_iPhoneAR/screenshot.png)
 - Ch3) Marker-less Augmented Reality:
@@ -105,8 +105,8 @@ Screenshots:
 ![Ch6) Non-rigid Face Tracking](https://raw.github.com/MasteringOpenCV/code/master/Chapter6_NonRigidFaceTracking/screenshot.png)
 - Ch7) 3D Head Pose Estimation using AAM and POSIT:
 ![Ch7) 3D Head Pose Estimation using AAM and POSIT](https://raw.github.com/MasteringOpenCV/code/master/Chapter7_HeadPoseEstimation/screenshot.png)
-- Ch8) Face Recognition using Deep Learning:
-![Ch8) Face Recognition using Deep Learning](https://raw.github.com/MasteringOpenCV/code/master/Chapter8_FaceRecognition/screenshot.png)
+- Ch8) Face Recognition using Fisherfaces:
+![Ch8) Face Recognition using Fisherfaces](https://raw.github.com/MasteringOpenCV/code/master/Chapter8_FaceRecognition/screenshot.png)
 - Ch9) Developing Fluid Wall using the Microsoft Kinect:
 ![Ch9) Developing Fluid Wall using the Microsoft Kinect](https://raw.github.com/MasteringOpenCV/code/master/Chapter9_FluidInteractionUsingKinect/screenshot.png)
 
