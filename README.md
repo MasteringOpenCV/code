@@ -24,9 +24,8 @@ To build & run the projects for the book:
   
 - Install CMake v2.8 or later from "http://www.cmake.org/".
 
-Each chapter of the book is for a separate project. Therefore there are 9
-projects for the 9 chapters (remember that Chapter 9 is an online chapter that
-can be downloaded from "http://www.packtpub.com/cool-projects-with-opencv/book").
+Each chapter of the book is for a separate project. Therefore there are 8
+projects for the 8 chapters. (Note that the 1st edition of the book also had a 9th chapter, only in the eBook).
 You can run each project separately, they each contain a README.md text file
 describing how to build that project, using CMake in most cases, because CMake
 can be used with many compilers and many operating systems.
@@ -43,7 +42,6 @@ Chapters:
 - Ch6) Non-rigid Face Tracking, by Jason Saragih.
 - Ch7) 3D Head Pose Estimation using AAM and POSIT, by Daniel Lélis Baggio.
 - Ch8) Face Recognition using Eigenfaces or Fisherfaces, by Shervin Emami.
-- Ch9) Developing Fluid Wall using the Microsoft Kinect, by Naureen Mahmood.
 
 
 --------------------------------------------------------------------------------
@@ -85,7 +83,6 @@ Per-chapter Requirements:
 - Ch6: nothing, but requires training data for execution.
 - Ch7: nothing.
 - Ch8: webcam.
-- Ch9: Kinect depth sensor.
 
 
 --------------------------------------------------------------------------------
@@ -107,7 +104,5 @@ Screenshots:
 ![Ch7) 3D Head Pose Estimation using AAM and POSIT](https://raw.github.com/MasteringOpenCV/code/master/Chapter7_HeadPoseEstimation/screenshot.png)
 - Ch8) Face Recognition using Fisherfaces:
 ![Ch8) Face Recognition using Fisherfaces](https://raw.github.com/MasteringOpenCV/code/master/Chapter8_FaceRecognition/screenshot.png)
-- Ch9) Developing Fluid Wall using the Microsoft Kinect:
-![Ch9) Developing Fluid Wall using the Microsoft Kinect](https://raw.github.com/MasteringOpenCV/code/master/Chapter9_FluidInteractionUsingKinect/screenshot.png)
 
 
