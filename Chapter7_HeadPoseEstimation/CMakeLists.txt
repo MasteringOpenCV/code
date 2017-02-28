@@ -3,7 +3,9 @@ cmake_minimum_required (VERSION 2.6)
 PROJECT(HeadOrientation)
 
 # Requires OpenCV
-FIND_PACKAGE( OpenCV REQUIRED )
+FIND_PACKAGE( OpenCV 3 )
+
+MESSAGE ( ${OpenCV_VERSION} )
 
 SET(SRC
     main.cpp

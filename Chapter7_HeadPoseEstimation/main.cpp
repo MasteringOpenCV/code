@@ -9,12 +9,11 @@
 *   http://www.packtpub.com/cool-projects-with-opencv/book
 *****************************************************************************/
 
-/*#include <opencv2/imgproc/imgproc.hpp>
-#include <opencv2/imgproc/imgproc_c.h>
-#include <opencv2/highgui/highgui.hpp>*/
+
 #include <opencv2/opencv.hpp>
 #include "PAW.h"
 #include "Triangle.h"
+
 
 #include <iostream>
 #include <stdio.h>
@@ -107,8 +106,8 @@ void drawPoints(Mat pcaset, PCA pca, PCA pcaTexture, std::vector<CvPoint>& point
     
     namedWindow("AAM");
     
-    IplImage* img = cvLoadImage(imageFileName);
-    Mat imageFrame(img);
+    //IplImage* img = cvLoadImage(imageFileName);
+	Mat imageFrame = imread(imageFileName);
 
     int t, ellap;
     
@@ -117,8 +116,8 @@ void drawPoints(Mat pcaset, PCA pca, PCA pcaTexture, std::vector<CvPoint>& point
 
         sprintf(imageFileName,"09-%dm.jpg",imageCount);
         
-        img = cvLoadImage(imageFileName);
-        Mat image(img);
+        
+		Mat image = imread(imageFileName);
         
         createTrackbar("eigen1", "AAM", &value1, alphaMax);
         createTrackbar("eigen2", "AAM", &value2, alphaMax);
@@ -194,8 +193,7 @@ void drawPoints(Mat pcaset, PCA pca, PCA pcaTexture, std::vector<CvPoint>& point
         if(c=='1') imageCount=1;
         if(c=='2') imageCount=2;
         if(c=='3') imageCount=3;
-
-        cvReleaseImage(&img);
+	
         ellap = clock();        
     }
 
@@ -203,20 +201,23 @@ void drawPoints(Mat pcaset, PCA pca, PCA pcaTexture, std::vector<CvPoint>& point
 }
 
 
-CvSubdiv2D* init_delaunay( CvMemStorage* storage,
+Subdiv2D* init_delaunay( CvMemStorage* storage,
                            CvRect rect )
 {
-    CvSubdiv2D* subdiv;
+    Subdiv2D* subdiv  = new Subdiv2D(rect);
 
-    subdiv = cvCreateSubdiv2D( CV_SEQ_KIND_SUBDIV2D, sizeof(*subdiv),
+
+    /*subdiv = cvCreateSubdiv2D( CV_SEQ_KIND_SUBDIV2D, sizeof(*subdiv),
                                sizeof(CvSubdiv2DPoint),
                                sizeof(CvQuadEdge2D),
                                storage );
-    cvInitSubdivDelaunay2D( subdiv, rect );
+    cvInitSubdivDelaunay2D( subdiv, rect );*/
 
     return subdiv;
 }
 
+//TODO: using draw_subdiv, which doesn't call draw_subdiv_edge
+/*
 void draw_subdiv_edge( IplImage* img, CvSubdiv2DEdge edge, CvScalar color )
 {
     CvSubdiv2DPoint* org_pt;
@@ -241,9 +242,13 @@ void draw_subdiv_edge( IplImage* img, CvSubdiv2DEdge edge, CvScalar color )
     }
     
 }
+*/
+//TODO: using draw_subdiv from delaunay2.cpp for now.
+//Update code to use pca
+
 
 int countFrame=0;
-void draw_subdiv( IplImage* img, CvSubdiv2D* subdiv,int par,CvNextEdgeType triangleDirection, std::vector<CvPoint> points,Mat pcaSet,Mat originalImage, int imageIndex, Mat& warp_final, vector<int>& triangleVertices)                
+/*void draw_subdiv( IplImage* img, CvSubdiv2D* subdiv,int par,CvNextEdgeType triangleDirection, std::vector<CvPoint> points,Mat pcaSet,Mat originalImage, int imageIndex, Mat& warp_final, vector<int>& triangleVertices)                
 {
     IplImage* triangleFrame = cvCreateImage(cvSize(640,480),IPL_DEPTH_32F,3);
 
@@ -334,14 +339,111 @@ void draw_subdiv( IplImage* img, CvSubdiv2D* subdiv,int par,CvNextEdgeType trian
     Mat triangleMat(triangleFrame);
     imshow("Triangle frame",triangleMat);
 }
+*/
+
+            
+static void draw_subdiv(Mat& img, Subdiv2D& subdiv, Scalar delaunay_color, std::vector<CvPoint> points, Mat pcaSet, Mat originalImage, int imageIndex, Mat& warp_final, vector<int>& triangleVertices){
+#if 1
+	vector<Vec6f> triangleList;
+	subdiv.getTriangleList(triangleList);
+	vector<Point> pt(3);
+	CvPoint buf[3];
+
+
+	for (size_t i = 0; i < triangleList.size(); i++)
+	{
+		Vec6f t = triangleList[i];
+		pt[0] = Point(cvRound(t[0]), cvRound(t[1]));
+		pt[1] = Point(cvRound(t[2]), cvRound(t[3]));
+		pt[2] = Point(cvRound(t[4]), cvRound(t[5]));
+
+		int shouldPaint = 1;
+		for (int j = 0;j<3;j++) {
+			buf[j] = cvPoint(cvRound(pt[j].x), cvRound(pt[j].y));
+
+			if ((pt[j].x<0) || (pt[j].x>640))
+				shouldPaint = 0;
+			if ((pt[j].y<0) || (pt[j].y>480))
+				shouldPaint = 0;
+		}
+		if (shouldPaint) {
+			//cvFillConvexPoly(img, buf, 3, CV_RGB(0, .1 + par*10.0 / 255.0, 0), CV_AA, 0);
+
+			line(img, pt[0], pt[1], delaunay_color, 1, LINE_AA, 0);
+			line(img, pt[1], pt[2], delaunay_color, 1, LINE_AA, 0);
+			line(img, pt[2], pt[0], delaunay_color, 1, LINE_AA, 0);
+
+			
+
+			int originalVertices[3];
+			for (int j = 0;j<3;j++) {
+				int px = buf[j].x;
+				int py = buf[j].y;
+				for (int k = 0;k<points.size();k++) {
+					if ((points[k].x == px) && (points[k].y == py)) {
+						originalVertices[j] = k;
+						triangleVertices.push_back(k);
+						break;//could there be overlapped points
+					}
+				}
+			}
+
+
+			//originalVertices stores the correspondence of vertices 0, 1 and 2 of the currently mapped triangle
+			//with their annotated points (which are in pcaSet)
+
+			int p1x = pcaSet.at<double>(imageIndex, originalVertices[0] * 2);
+			int p1y = pcaSet.at<double>(imageIndex, originalVertices[0] * 2 + 1);
+
+			int p2x = pcaSet.at<double>(imageIndex, originalVertices[1] * 2);
+			int p2y = pcaSet.at<double>(imageIndex, originalVertices[1] * 2 + 1);
+
+			int p3x = pcaSet.at<double>(imageIndex, originalVertices[2] * 2);
+			int p3y = pcaSet.at<double>(imageIndex, originalVertices[2] * 2 + 1);
+
+
+
+			Point2f srcTri[3];
+			Point2f dstTri[3];
+
+			srcTri[0] = Point2f(p1x, p1y);
+			srcTri[1] = Point2f(p2x, p2y);
+			srcTri[2] = Point2f(p3x, p3y);
+
+			dstTri[0] = Point2f(buf[0].x, buf[0].y);
+			dstTri[1] = Point2f(buf[1].x, buf[1].y);
+			dstTri[2] = Point2f(buf[2].x, buf[2].y);
+
+			warpTextureFromTriangle(srcTri, originalImage, dstTri, warp_final);
+
+
+		}
+	}
+#else
+	vector<Vec4f> edgeList;
+	subdiv.getEdgeList(edgeList);
+	for (size_t i = 0; i < edgeList.size(); i++)
+	{
+		Vec4f e = edgeList[i];
+		Point pt0 = Point(cvRound(e[0]), cvRound(e[1]));
+		Point pt1 = Point(cvRound(e[2]), cvRound(e[3]));
+		line(img, pt0, pt1, delaunay_color, 1, LINE_AA, 0);
+	}
+#endif
+}
 
 void createAAM(PCA pca, Mat pcaSet, PCA& pcaTexture, std::vector<CvPoint>& pointsInsideHull,vector<int>& triangleVertices){
-    CvMemStorage* storage;
-    CvSubdiv2D* subdiv;
+    //OpenCV3 CvMemStorage* storage;
+    Subdiv2D* subdiv;
     CvRect rect = { 0, 0, 640, 480 };
-    IplImage* asmFrame = cvCreateImage(cvSize(640,480),IPL_DEPTH_32F,3); //TODO parameterize size
-    storage = cvCreateMemStorage(0);
-    subdiv = cvCreateSubdivDelaunay2D(rect,storage);//init_delaunay( storage, rect );
+    //OpenCV3 IplImage* asmFrame = cvCreateImage(cvSize(640,480),IPL_DEPTH_32F,3); //TODO parameterize size
+	Mat* asmFrame = new Mat(Size(640,480), CV_32FC3);
+
+	
+	
+    //OpenCV3 storage = cvCreateMemStorage(0);
+	subdiv = new Subdiv2D(rect);//OpenCV3 cvCreateSubdivDelaunay2D(rect, storage);
+								//init_delaunay( storage, rect );
     std::vector<CvPoint> points;
 
     for(int i=0;i<pca.mean.cols/2;i++){        
@@ -349,8 +451,10 @@ void createAAM(PCA pca, Mat pcaSet, PCA& pcaTexture, std::vector<CvPoint>& point
         double y = pca.mean.at<double>(0,2*i+1);
         CvPoint point = cvPoint( cvRound(x), cvRound(y));
         points.push_back(point);        
-        CvPoint2D32f fp = cvPoint2D32f(x, y);
-        cvSubdivDelaunay2DInsert( subdiv, fp );
+        //OpenCV3 CvPoint2D32f fp = cvPoint2D32f(x, y);
+		Point2f fp(x, y);
+        //OpenCV3 cvSubdivDelaunay2DInsert( subdiv, fp );
+		subdiv->insert(fp);
     }
 
    
@@ -403,18 +507,20 @@ void createAAM(PCA pca, Mat pcaSet, PCA& pcaTexture, std::vector<CvPoint>& point
 
         char imageFileName[200];
         sprintf(imageFileName,"09-%dm.jpg",imageIndex+1);
-        IplImage* img = cvLoadImage(imageFileName);
+        Mat img = imread(imageFileName);
         Mat matImgFrame(img);        
 
         Mat warp_final;
         warp_final = Mat::zeros( matImgFrame.rows, matImgFrame.cols, matImgFrame.type() );
+		
+        //TODO: draw_subdiv(asmFrame,subdiv,10,CV_NEXT_AROUND_LEFT,points,pcaSet,matImgFrame,imageIndex,warp_final,triangleVertices);
+        //TODO: draw_subdiv(asmFrame,subdiv,10,CV_NEXT_AROUND_RIGHT,points,pcaSet,matImgFrame,imageIndex,warp_final,triangleVertices);
+		draw_subdiv(*asmFrame, *subdiv, Scalar(0, 0, 255), points, pcaSet, matImgFrame, imageIndex, warp_final, triangleVertices);
+		
+		
 
+		Scalar delaunay_color(0, 0, 255);
 
-
-        draw_subdiv(asmFrame,subdiv,10,CV_NEXT_AROUND_LEFT,points,pcaSet,matImgFrame,imageIndex,warp_final,triangleVertices);
-        draw_subdiv(asmFrame,subdiv,10,CV_NEXT_AROUND_RIGHT,points,pcaSet,matImgFrame,imageIndex,warp_final,triangleVertices);
-    
-        
         
         
         int pointIndex = 0;
@@ -422,7 +528,7 @@ void createAAM(PCA pca, Mat pcaSet, PCA& pcaTexture, std::vector<CvPoint>& point
         
         for(int j=0;j<textureCols;j++){    
             CvPoint pt = pointsInsideHull.at(pointIndex);            
-            int pos = pt.y* img->widthStep + pt.x *3;
+            int pos = pt.y* img.step + pt.x *3;
 
 
             pcaTextureSet.at<double>(imageIndex,3*j  ) = ((double)*((uchar*)(warp_final.data  + pos)))/255.0f;
@@ -431,7 +537,7 @@ void createAAM(PCA pca, Mat pcaSet, PCA& pcaTexture, std::vector<CvPoint>& point
             pointIndex++;
         }
 
-        cvReleaseImage(&img);
+        //OpenCV 3 cvReleaseImage(&img);
         warp_final.release();
         matImgFrame.release();
         
@@ -506,7 +612,7 @@ void testMain( int argc, char** argv ){
 }
 
 
-int main( int argc, char** argv ){
+int main( int argc, char** argv ){	
     testMain(argc,argv);
     return 0;
 }
