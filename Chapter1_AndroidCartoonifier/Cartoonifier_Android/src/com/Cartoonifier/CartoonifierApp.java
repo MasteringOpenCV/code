@@ -33,12 +33,9 @@ public class CartoonifierApp extends Activity implements OnTouchListener {
     public CartoonifierApp() {
         Log.i(TAG, "Instantiated new " + this.getClass());
     }
-
-    @Override
-    protected void onPause() {
-        Log.i(TAG, "onPause");
-        super.onPause();
-        mView.releaseCamera();
+fdsgdsgfgfh
+yhegbfgbf
+yhbt4t4b
     }
 
     @Override
