@@ -3,11 +3,11 @@
 *   Handy utility functions for dealing with images in OpenCV (desktop or Android).
 *   The most recent version of this will always be available from "http://shervinemami.info/openCV.html"
 ******************************************************************************
-*   by Shervin Emami, 5th Dec 2012 (shervin.emami@gmail.com)
+*   by Shervin Emami, 8th Aug 2016 (shervin.emami@gmail.com)
 *   http://www.shervinemami.info/
 ******************************************************************************
-*   Ch1 of the book "Mastering OpenCV with Practical Computer Vision Projects"
-*   Copyright Packt Publishing 2012.
+*   Ch1 of the book "Mastering OpenCV with Practical Computer Vision Projects", 2nd Edition.
+*   Copyright Packt Publishing 2016.
 *   http://www.packtpub.com/cool-projects-with-opencv/book
 *****************************************************************************/
 
@@ -16,11 +16,10 @@
 
 
 // OpenCV
-#include <cv.h>
-//#include <cvaux.h>
-#include <cxcore.h>
+#include "opencv2/imgproc/imgproc.hpp"
+
 #ifdef USE_HIGHGUI
-    #include <highgui.h>
+    #include "opencv2/highgui/highgui.hpp"
 #endif
 
 
@@ -53,11 +52,11 @@
     #else
         // For stdout debug logging, with a new-line character on the end:
         #ifndef _MSC_VER
-            // Compiles on GCC but not MSVC:
-            #define LOG(fmt, args...) do {printf(fmt, ## args); printf("\n"); fflush(stdout);} while (0)
-    //        #define LOG printf
+            // Compiles on GCC but maybe not MSVC:
+            //#define LOG(fmt, args...) do {printf(fmt, ## args); printf("\n"); fflush(stdout);} while (0)
+            #define LOG(...)   do {} while (0)
         #else
-            #define LOG printf
+            #define LOG(...)   do {} while (0)
         #endif
     #endif
 #endif

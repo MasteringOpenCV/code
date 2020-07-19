@@ -17,24 +17,7 @@
 #include "opencv_hotshots/ft/patch_model.hpp"
 #include "opencv_hotshots/ft/shape_model.hpp"
 #include "opencv_hotshots/ft/face_detector.hpp"
-//==============================================================================
-class fps_timer{                           //frames/second timer for tracking
-public:
-  int64 t_start;                           //start time
-  int64 t_end;                             //end time
-  float fps;                               //current frames/sec
-  int fnum;                                //number of frames since @t_start
-
-  fps_timer(){this->reset();}              //default constructor
-
-  void increment();                        //increment timer index
-
-  void reset();                            //reset timer
-
-  void 
-  display_fps(Mat &im,                     //image to display FPS on
-          Point p = Point(-1,-1));     //bottom left corner of text
-};
+#include "opencv_hotshots/ft/fps_timer.hpp"
 //==============================================================================
 class face_tracker_params{                 //face tracking parameters
 public:

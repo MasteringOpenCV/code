@@ -1,18 +1,18 @@
 /*****************************************************************************
 *   Face Recognition using Eigenfaces or Fisherfaces
 ******************************************************************************
-*   by Shervin Emami, 5th Dec 2012
+*   by Shervin Emami, 8th Aug 2016 (shervin.emami@gmail.com)
 *   http://www.shervinemami.info/openCV.html
 ******************************************************************************
-*   Ch8 of the book "Mastering OpenCV with Practical Computer Vision Projects"
-*   Copyright Packt Publishing 2012.
+*   Ch8 of the book "Mastering OpenCV with Practical Computer Vision Projects", 2nd Edition.
+*   Copyright Packt Publishing 2016.
 *   http://www.packtpub.com/cool-projects-with-opencv/book
 *****************************************************************************/
 
 /*
  * ImageUtils
  *      Handy utility functions for dealing with images in OpenCV (desktop or Android).
- *      by Shervin Emami (shervin.emami@gmail.com), 27th May 2012.
+ *      by Shervin Emami, 8th Aug 2016 (shervin.emami@gmail.com)
  *      The most recent version of this will always be available from "http://shervinemami.info/openCV.html"
  */
 
@@ -21,11 +21,10 @@
 
 
 // OpenCV
-#include <cv.h>
-//#include <cvaux.h>
-#include <cxcore.h>
+#include "opencv2/imgproc/imgproc.hpp"
+
 #ifdef USE_HIGHGUI
-    #include <highgui.h>
+    #include "opencv2/highgui/highgui.hpp"
 #endif
 
 
@@ -51,18 +50,20 @@
 // These functions will print using the LOG() function, using the same format as printf(). If you want it to be printed using a different
 // function (such as for Android logcat output), then define LOG as your output function, otherwise it will use printf() by default.
 #ifndef LOG
-    // For stdout debug logging, with a new-line character on the end:
-    #ifndef _MSC_VER
-        // Compiles on GCC but not MSVC:
-        #define LOG(fmt, args...) do {printf(fmt, ## args); printf("\n"); fflush(stdout);} while (0)
-//        #define LOG printf
+    #ifdef __ANDROID__
+        // For Android debug logging to logcat:
+        #include <android/log.h>
+        #define LOG(fmt, args...) (__android_log_print(ANDROID_LOG_INFO, "........", fmt, ## args))
     #else
-        #define LOG printf
+        // For stdout debug logging, with a new-line character on the end:
+        #ifndef _MSC_VER
+            // Compiles on GCC but maybe not MSVC:
+            //#define LOG(fmt, args...) do {printf(fmt, ## args); printf("\n"); fflush(stdout);} while (0)
+            #define LOG(...)   do {} while (0)
+        #else
+            #define LOG(...)   do {} while (0)
+        #endif
     #endif
-
-    //// For Android debug logging to logcat:
-    //#include <android/log.h>
-    //#define LOG(fmt, args...) (__android_log_print(ANDROID_LOG_INFO, "........", fmt, ## args))
 #endif
 
 

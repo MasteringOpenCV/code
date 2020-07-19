@@ -1,12 +1,12 @@
 cmake_minimum_required (VERSION 2.6) 
 
-PROJECT(Cartoonifier_Desktop)
+PROJECT(Cartoonifier)
 
 # Requires OpenCV
 FIND_PACKAGE( OpenCV REQUIRED )
 
 SET(SRC
-    main_desktop.cpp
+    main.cpp
     cartoon.cpp
     ImageUtils_0.7.cpp
 )

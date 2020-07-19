@@ -2,11 +2,11 @@
 *   cartoon.cpp
 *   Create a cartoon-like or painting-like image filter.
 ******************************************************************************
-*   by Shervin Emami, 5th Dec 2012 (shervin.emami@gmail.com)
+*   by Shervin Emami, 8th Aug 2016 (shervin.emami@gmail.com)
 *   http://www.shervinemami.info/
 ******************************************************************************
-*   Ch1 of the book "Mastering OpenCV with Practical Computer Vision Projects"
-*   Copyright Packt Publishing 2012.
+*   Ch1 of the book "Mastering OpenCV with Practical Computer Vision Projects", 2nd Edition.
+*   Copyright Packt Publishing 2016.
 *   http://www.packtpub.com/cool-projects-with-opencv/book
 *****************************************************************************/
 
@@ -36,7 +36,7 @@ void cartoonifyImage(Mat srcColor, Mat dst, bool sketchMode, bool alienMode, boo
         // Generate a nice edge mask, similar to a pencil line drawing.
         Laplacian(srcGray, edges, CV_8U, 5);
         threshold(edges, mask, 80, 255, THRESH_BINARY_INV);
-        // Mobile cameras usually have lots of noise, so remove small
+        // Tiny cameras usually have lots of noise, so remove small
         // dots of black noise from the black & white edge mask.
         removePepperNoise(mask);
     }
@@ -169,9 +169,10 @@ void changeFacialSkinColor(Mat smallImgBGR, Mat bigEdges, int debugType)
 }
 
 
-// Remove black dots (upto 4x4 in size) of noise from a pure black & white image.
+// Remove black dots (upto 3x3 in size) of noise from a pure black & white image.
 // ie: The input image should be mostly white (255) and just contains some black (0) noise
 // in addition to the black (0) edges.
+// Note this can be done using erode & dilate, but the effect isn't as nice.
 void removePepperNoise(Mat &mask)
 {
     // For simplicity, ignore the top & bottom row border.
