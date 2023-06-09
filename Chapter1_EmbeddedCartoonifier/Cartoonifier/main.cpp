@@ -1,21 +1,23 @@
 /*****************************************************************************
-*   Cartoonifier_Desktop.cpp, for Desktop.
+*   Cartoonifier.cpp: Main GUI for the Cartoonifier application.
 *   Converts a real-life camera stream to look like a cartoon.
-*   This file is for a desktop executable, but the cartoonifier can also be used in an Android / iOS project.
+*   This file is for a desktop or embedded Linux executable.
 ******************************************************************************
-*   by Shervin Emami, 5th Dec 2012 (shervin.emami@gmail.com)
+*   by Shervin Emami, 8th Aug 2016 (shervin.emami@gmail.com)
 *   http://www.shervinemami.info/
 ******************************************************************************
-*   Ch1 of the book "Mastering OpenCV with Practical Computer Vision Projects"
-*   Copyright Packt Publishing 2012.
+*   Ch1 of the book "Mastering OpenCV with Practical Computer Vision Projects", 2nd Edition.
+*   Copyright Packt Publishing 2016.
 *   http://www.packtpub.com/cool-projects-with-opencv/book
 *****************************************************************************/
 
 
 // Try to set the camera resolution. Note that this only works for some cameras on
 // some computers and only for some drivers, so don't rely on it to work!
-const int DESIRED_CAMERA_WIDTH = 640;
-const int DESIRED_CAMERA_HEIGHT = 480;
+const int DEFAULT_CAMERA_WIDTH = 640;
+const int DEFAULT_CAMERA_HEIGHT = 480;
+
+const char * DEFAULT_CAMERA_NUMBER = "0";
 
 const int NUM_STICK_FIGURE_ITERATIONS = 40; // Sets how long the stick figure face should be shown for skin detection.
 
@@ -23,7 +25,7 @@ const char *windowName = "Cartoonifier";   // Name shown in the GUI window.
 
 
 // Set to true if you want to see line drawings instead of paintings.
-bool m_sketchMode = false;
+bool m_sketchMode = true;
 // Set to true if you want to change the skin color of the character to an alien color.
 bool m_alienMode = false;
 // Set to true if you want an evil "bad" character instead of a "good" character.
@@ -35,6 +37,7 @@ bool m_debugMode = false;
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <ctype.h>           // For isdigit()
 
 // Include OpenCV's C++ Interface
 #include "opencv2/opencv.hpp"
@@ -43,6 +46,7 @@ bool m_debugMode = false;
 //#include "detectObject.h"       // Easily detect faces or eyes (using LBP or Haar Cascades).
 #include "cartoon.h"            // Cartoonify a photo.
 #include "ImageUtils.h"      // Shervin's handy OpenCV utility functions.
+#include "fps_timer.hpp"          // FPS timer by Jason Saragih.
 
 using namespace cv;
 using namespace std;
@@ -55,18 +59,29 @@ int m_stickFigureIterations = 0;  // Draws a stick figure outline for where the 
 
 
 
-// Get access to the webcam.
-void initWebcam(VideoCapture &videoCapture, int cameraNumber)
+// Get access to the webcam or video source. cameraNumber should be a number
+// (eg: "0" or "1") but can also be a video file or stream URL.
+void initCamera(VideoCapture &videoCapture, char* cameraNumber)
 {
-    // Get access to the default camera.
+    // First try to access to the camera as a camera number such as 0
     try {   // Surround the OpenCV call by a try/catch block so we can give a useful error message!
-        videoCapture.open(cameraNumber);
+        if ( isdigit(cameraNumber[0]) ) {
+            videoCapture.open(atoi(cameraNumber));
+        }
     } catch (cv::Exception &e) {}
+
     if ( !videoCapture.isOpened() ) {
-        cerr << "ERROR: Could not access the camera!" << endl;
-        exit(1);
+        // Also try to access to the camera as a video file or URL.
+        try {   // Surround the OpenCV call by a try/catch block so we can give a useful error message!
+            videoCapture.open(cameraNumber);
+        } catch (cv::Exception &e) {}
+
+        if ( !videoCapture.isOpened() ) {
+            cerr << "ERROR: Could not access the camera " << cameraNumber << " !" << endl;
+            exit(1);
+        }
     }
-    cout << "Loaded camera " << cameraNumber << "." << endl;
+    cout << "Loaded camera " << cameraNumber << endl;
 }
 
 
@@ -101,9 +116,11 @@ void onKeypress(char key)
 
 int main(int argc, char *argv[])
 {
-    cout << "Cartoonifier, by Shervin Emami (www.shervinemami.info), June 2012." << endl;
+    cout << "Cartoonifier, by Shervin Emami (www.shervinemami.info), June 2016." << endl;
     cout << "Converts real-life images to cartoon-like images." << endl;
     cout << "Compiled with OpenCV version " << CV_VERSION << endl;
+    cout << "usage:   " << argv[0] << " [[camera_number] desired_width desired_height ]" << endl;
+    cout << "default: " << argv[0] << " " << DEFAULT_CAMERA_NUMBER << " " << DEFAULT_CAMERA_WIDTH << " " << DEFAULT_CAMERA_HEIGHT << endl;
     cout << endl;
 
     cout << "Keyboard commands (press in the GUI window):" << endl;
@@ -114,23 +131,44 @@ int main(int argc, char *argv[])
     cout << "    d:    change debug mode." << endl;
     cout << endl;
 
+    char *cameraNumber = (char*)DEFAULT_CAMERA_NUMBER;
+    int desiredCameraWidth = DEFAULT_CAMERA_WIDTH;
+    int desiredCameraHeight = DEFAULT_CAMERA_HEIGHT;
+
     // Allow the user to specify a camera number, since not all computers will be the same camera number.
-    int cameraNumber = 0;   // Change this if you want to use a different camera device.
-    if (argc > 1) {
-        cameraNumber = atoi(argv[1]);
+    int a = 1;
+    if (argc > a) {
+        cameraNumber = argv[a];
+        a++;    // Next arg
+
+        // Allow the user to specify camera resolution.
+        if (argc > a) {
+            desiredCameraWidth = atoi(argv[a]);
+            a++;    // Next arg
+
+            if (argc > a) {
+                desiredCameraHeight = atoi(argv[a]);
+                a++;    // Next arg
+            }
+        }
     }
 
     // Get access to the camera.
     VideoCapture camera;
-    initWebcam(camera, cameraNumber);
+    initCamera(camera, cameraNumber);
 
     // Try to set the camera resolution. Note that this only works for some cameras on
     // some computers and only for some drivers, so don't rely on it to work!
-    camera.set(CV_CAP_PROP_FRAME_WIDTH, DESIRED_CAMERA_WIDTH);
-    camera.set(CV_CAP_PROP_FRAME_HEIGHT, DESIRED_CAMERA_HEIGHT);
+    camera.set(CV_CAP_PROP_FRAME_WIDTH, desiredCameraWidth);
+    camera.set(CV_CAP_PROP_FRAME_HEIGHT, desiredCameraHeight);
 
     // Create a GUI window for display on the screen.
-    namedWindow(windowName); // Resizable window, might not work on Windows.
+    namedWindow(windowName, WINDOW_NORMAL); // Fullscreen windows must be _NORMAL
+    // Make our window fullscreen.
+    setWindowProperty(windowName, WND_PROP_FULLSCREEN, CV_WINDOW_FULLSCREEN);
+
+    // Keep track of the recent FPS status.
+    fps_timer timer;
 
     // Run forever, until the user hits Escape to "break" out of this loop.
     while (true) {
@@ -157,6 +195,17 @@ int main(int argc, char *argv[])
         if (m_stickFigureIterations > 0) {
             drawFaceStickFigure(displayedFrame);
             m_stickFigureIterations--;
+        }
+
+        // Show the current FPS, displayed to the text console
+        timer.increment();
+        if (timer.fnum == 0) {
+            double fps;
+            if (timer.fps < 1.0f)
+                fps = timer.fps;                // FPS is a fraction
+            else
+                fps = (int)(timer.fps + 0.5f);  // FPS is a large number
+            cout << fps << " FPS" << endl;
         }
 
         imshow(windowName, displayedFrame);

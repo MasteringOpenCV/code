@@ -1,20 +1,20 @@
 ==============================================================================
-Mastering OpenCV with Practical Computer Vision Projects
+Mastering OpenCV with Practical Computer Vision Projects, 2nd Edition
 ==============================================================================
 Full source-code for the book.
 --------------------------------------------------------------------------------
 
     Source-Code:    https://github.com/MasteringOpenCV/code
     Book:           http://www.packtpub.com/cool-projects-with-opencv/book
-    Copyright:      Packt Publishing 2012.
+    Copyright:      Packt Publishing 2016.
 
 
 --------------------------------------------------------------------------------
 To build & run the projects for the book:
 --------------------------------------------------------------------------------
-- Install OpenCV (versions between 2.4.2 to 2.4.11 are supported, whereas OpenCV 3.0 is not yet supported). eg: go to "http://opencv.org/", click on
-  Downloads, download the latest OpenCV 2.4 version (including prebuilt library), and extract
-  it to "C:\OpenCV" for Windows or "~/OpenCV" for Linux. In OpenCV v2.4.3, the
+- Install OpenCV (version 3.1.0 is recommended, whereas OpenCV 2 is only supported in the 1st edition of this book). eg: go to "http://opencv.org/", click on
+  Downloads, download the latest OpenCV 3.1 version (including prebuilt library), and extract
+  it to "C:\OpenCV" for Windows or "~/OpenCV" for Linux. In OpenCV v3.1.0, the
   prebuilt OpenCV library is in "C:\OpenCV\build" or "~/OpenCV/build", such as
   "C:\OpenCV\build\x64\vc9" for MS Visual Studio 2008 (or "vs10" folder for MS 
   Visual Studio 2010, or the "x86" parent folder for 32-bit Windows).
@@ -24,9 +24,8 @@ To build & run the projects for the book:
   
 - Install CMake v2.8 or later from "http://www.cmake.org/".
 
-Each chapter of the book is for a separate project. Therefore there are 9
-projects for the 9 chapters (remember that Chapter 9 is an online chapter that
-can be downloaded from "http://www.packtpub.com/cool-projects-with-opencv/book").
+Each chapter of the book is for a separate project. Therefore there are 8
+projects for the 8 chapters. (Note that the 1st edition of the book also had a 9th chapter, only in the eBook).
 You can run each project separately, they each contain a README.md text file
 describing how to build that project, using CMake in most cases, because CMake
 can be used with many compilers and many operating systems.
@@ -35,7 +34,7 @@ can be used with many compilers and many operating systems.
 --------------------------------------------------------------------------------
 Chapters:
 --------------------------------------------------------------------------------
-- Ch1) Cartoonifier and Skin Changer for Android, by Shervin Emami.
+- Ch1) Cartoonifier and Skin Changer for Raspberry Pi, by Shervin Emami.
 - Ch2) Marker-based Augmented Reality on iPhone or iPad, by Khvedchenia Ievgen.
 - Ch3) Marker-less Augmented Reality, by Khvedchenia Ievgen.
 - Ch4) Exploring Structure from Motion using OpenCV, by Roy Shilkrot.
@@ -43,7 +42,6 @@ Chapters:
 - Ch6) Non-rigid Face Tracking, by Jason Saragih.
 - Ch7) 3D Head Pose Estimation using AAM and POSIT, by Daniel Lélis Baggio.
 - Ch8) Face Recognition using Eigenfaces or Fisherfaces, by Shervin Emami.
-- Ch9) Developing Fluid Wall using the Microsoft Kinect, by Naureen Mahmood.
 
 
 --------------------------------------------------------------------------------
@@ -62,8 +60,8 @@ In addition to C/C++ and OpenCV experience, you will also need a computer, and a
 IDE of your choice (such as Visual Studio, XCode, Eclipse, or QtCreator, running
 on Windows, Mac or Linux). Some chapters have further requirements, particularly:
 
-- To develop the Android app, you will need an Android device, Android
-  development tools, and basic Android development experience.
+- To develop the Raspberry Pi application, you will need an embedded Linux device,
+  such as a Raspberry Pi, BeagleBone, ODROID, OlinuXino or Jetson dev board.
 - To develop the iOS app, you will need an iPhone, iPad, or iPod Touch device,
   iOS development tools (including an Apple computer, XCode IDE, and an Apple
   Developer Certificate), and basic iOS and Objective-C development experience.
@@ -77,7 +75,7 @@ on Windows, Mac or Linux). Some chapters have further requirements, particularly
   operations and eigen decomposition.
 
 Per-chapter Requirements:
-- Ch1: webcam (for desktop app), or Android development system (for Android app).
+- Ch1: webcam (for desktop app), or Raspberry Pi develepment board (for embedded app).
 - Ch2: iOS development system (to build an iOS app).
 - Ch3: OpenGL built into OpenCV.
 - Ch4: PCL (http://pointclouds.org/) and SSBA (http://www.inf.ethz.ch/personal/chzach/opensource.html).
@@ -85,14 +83,13 @@ Per-chapter Requirements:
 - Ch6: nothing, but requires training data for execution.
 - Ch7: nothing.
 - Ch8: webcam.
-- Ch9: Kinect depth sensor.
 
 
 --------------------------------------------------------------------------------
 Screenshots:
 --------------------------------------------------------------------------------
-- Ch1) Cartoonifier and Skin Changer for Android:
-![Ch1) Cartoonifier and Skin Changer for Android](https://raw.github.com/MasteringOpenCV/code/master/Chapter1_AndroidCartoonifier/screenshot.png)
+- Ch1) Cartoonifier and Skin Changer for Raspberry Pi:
+![Ch1) Cartoonifier and Skin Changer for Raspberry Pi](https://raw.github.com/MasteringOpenCV/code/Ed2_OpenCV31/Chapter1_EmbeddedCartoonifier/screenshot.png)
 - Ch2) Marker-based Augmented Reality on iPhone or iPad:
 ![Ch2) Marker-based Augmented Reality on iPhone or iPad](https://raw.github.com/MasteringOpenCV/code/master/Chapter2_iPhoneAR/screenshot.png)
 - Ch3) Marker-less Augmented Reality:
@@ -105,9 +102,7 @@ Screenshots:
 ![Ch6) Non-rigid Face Tracking](https://raw.github.com/MasteringOpenCV/code/master/Chapter6_NonRigidFaceTracking/screenshot.png)
 - Ch7) 3D Head Pose Estimation using AAM and POSIT:
 ![Ch7) 3D Head Pose Estimation using AAM and POSIT](https://raw.github.com/MasteringOpenCV/code/master/Chapter7_HeadPoseEstimation/screenshot.png)
-- Ch8) Face Recognition using Eigenfaces or Fisherfaces:
-![Ch8) Face Recognition using Eigenfaces or Fisherfaces](https://raw.github.com/MasteringOpenCV/code/master/Chapter8_FaceRecognition/screenshot.png)
-- Ch9) Developing Fluid Wall using the Microsoft Kinect:
-![Ch9) Developing Fluid Wall using the Microsoft Kinect](https://raw.github.com/MasteringOpenCV/code/master/Chapter9_FluidInteractionUsingKinect/screenshot.png)
+- Ch8) Face Recognition using Fisherfaces:
+![Ch8) Face Recognition using Fisherfaces](https://raw.github.com/MasteringOpenCV/code/master/Chapter8_FaceRecognition/screenshot.png)
 
 
